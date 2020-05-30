@@ -1,0 +1,23 @@
+body {
+    background-color: #fafafa;
+    margin: 0;
+}
+main#main {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+.container {
+    width: 1400px;
+    max-width: calc(100vw - 30px);
+    padding: 0 15px;
+    margin: auto;
+}
+
+.maincontainer {
+    margin: 20px auto;
+}
+
+footer.container {
+    padding: 30px 15px;
+}

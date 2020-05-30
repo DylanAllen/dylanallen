@@ -5,10 +5,10 @@ const AboutPage: React.FunctionComponent = () => (
   <Layout title="About Dylan Allen | JavaScript Developer | Frontend Web">
     <Heading>About</Heading>
     <Paragraph>
-      Dylan Allen is a jerk.
+      Dylan is working on this site.
     </Paragraph>
     <Paragraph>
-      But he gets stuff done.
+      Not much yet.
     </Paragraph>
   </Layout>
 )

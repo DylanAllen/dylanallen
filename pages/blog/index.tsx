@@ -23,7 +23,6 @@ const Blog: React.FunctionComponent = () => {
             </div>
         )
     }
-    
 
     return (
         <Layout title="Blog | Dylan Allen | JavaScript Developer | Frontend Web">

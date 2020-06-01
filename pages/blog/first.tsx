@@ -29,7 +29,7 @@ const FirstPost: React.FunctionComponent  = () => {
 }
 
 export const meta = {
-  title: 'First Post',
+  title: 'The First Post',
   description: 'This is the FIRST Post of the posts',
   image:  'images/webdev.png',
   slug: 'first',

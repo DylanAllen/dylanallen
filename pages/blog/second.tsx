@@ -14,8 +14,8 @@ const SecondPost: React.FunctionComponent = () => (
 )
 
 export const meta = {
-  title: 'Second Post',
-  description: 'This is the 2nd Post of the posts',
+  title: 'Post Number Two',
+  description: 'This is the 2nd Post',
   image: 'noiiice-_DSF8794-Edit.jpg',
   slug: 'second',
   date: new Date(2020, 4, 20)

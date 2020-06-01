@@ -1,4 +1,4 @@
-import { auth as firebaseAuth } from 'firebase'
+import { auth as firebaseAuth, storage } from 'firebase'
 import { initApp } from '../utils/firebase'; 
 
 interface Auth {
@@ -7,6 +7,7 @@ interface Auth {
     initialized: boolean;
     provider: firebaseAuth.GoogleAuthProvider;
     user: firebase.User | null;
+    storage: () => storage.Storage;
 }
 
 export const auth: Auth = {
@@ -39,6 +40,9 @@ export const auth: Auth = {
         } else {
             return Promise.resolve(auth.user);
         }
+    },
+    storage: () => {
+        return storage();
     }
 }
 

@@ -11,3 +11,9 @@ export function initApp() {
     }
     return firebase;
 }
+
+export const getImage = async (path: string | undefined) => {
+    var storage = firebase.storage();
+    const url = await storage.ref(path).getDownloadURL();
+    return url
+}

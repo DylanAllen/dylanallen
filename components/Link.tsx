@@ -1,4 +1,3 @@
-  
 import { FunctionComponent } from 'react'
 import { Anchor } from 'grommet'
 import { useRouter } from 'next/router'

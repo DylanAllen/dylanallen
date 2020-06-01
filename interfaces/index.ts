@@ -7,7 +7,7 @@
 export interface MetaType {
   title: string;
   description: string;
-  image: string | null;
+  image: string | undefined;
   slug: string;
   date: Date
 }

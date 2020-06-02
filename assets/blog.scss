@@ -5,3 +5,14 @@
         padding: 20px;
     }
 }
+
+.image-container {
+  animation: pulse 2s ease 0s infinite alternate;
+  background-size: cover;
+  background-position: center center;
+}
+
+@keyframes pulse {
+  from {background-color: #ffffff;}
+  to { background-color: #9f9f9f;}
+}

@@ -16,7 +16,7 @@ const Third: React.FunctionComponent = () => (
 export const meta = {
   title: 'Third Post',
   description: 'This is the Third Post of the posts',
-  image: 'noiiice-_DSF3327.jpg',
+  image: 'images/noiiice-_DSF3327.jpg',
   slug: 'third',
   date: new Date(2020, 4, 30)
 }

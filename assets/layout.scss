@@ -1,5 +1,6 @@
 body {
-    background-color: #fafafa;
+    background-color: $light;
+    color: $dark;
     margin: 0;
 }
 main#main {
@@ -20,4 +21,8 @@ main#main {
 
 footer.container {
     padding: 30px 15px;
+}
+
+.clear {
+  clear: both;
 }

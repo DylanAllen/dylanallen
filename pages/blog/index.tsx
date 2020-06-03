@@ -1,40 +1,41 @@
 import Layout from '../../components/Layout'
-import { Heading, Paragraph, Box, Image } from 'grommet';
-import { meta as P1 } from './first';
-import { meta as P2 } from './second';
-import { meta as P3 } from './third';
+import { Heading, Paragraph, Box } from 'grommet';
+import { meta as Udon } from './udon';
+import { meta as Noiiice } from './noiiice';
 import { MetaType } from '../../interfaces';
 import Link from '../../components/Link';
 import Picture from '../../components/Picture';
 
+
 let posts: MetaType[] = [
-  P1,
-  P2,
-  P3
+  Noiiice,
+  Udon
 ]
 
 const PostCard: React.FunctionComponent<{ post: MetaType }> = ({ post }) => {
 
   return (
     <article className="post-summary">
-      <Heading level={3}>{post.title}</Heading>
-      <Paragraph>{post.description}</Paragraph>
-      <Picture fbpath={post.image} style={{height: "300px", width: "300px"}} />
-      <Link path={`/blog/${post.slug}`}>View Post</Link>
+      <Heading className="post-title" level={3}>{post.title}</Heading>
+      <div className="post-card">
+        <Paragraph className="post-desc">{post.description}</Paragraph>   
+        <Picture className="post-image" fbpath={post.image} style={{height: "300px", width: "400px"}} overlayed={true} />   
+        <div className="post-floater"></div>
+        <Link className="post-link" path={`/blog/${post.slug}`}>View Post</Link>
+        <div className="clear"></div>
+      </div>
     </article>
   )
 }
 
 const Blog: React.FunctionComponent = () => {
 
-
-
   return (
     <Layout title="Blog | Dylan Allen | JavaScript Developer | Frontend Web">
-      <Heading>Blog</Heading>
-      <Box className="post-list">
-        {posts.map(post => <PostCard post={post} key={post.slug}></PostCard>)}
-      </Box>
+          <Heading>Blog</Heading>
+          <Box className="post-list">
+            {posts.map(post => <PostCard post={post} key={post.slug}></PostCard>)}
+          </Box>
     </Layout>
   )
 }

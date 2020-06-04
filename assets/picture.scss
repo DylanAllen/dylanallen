@@ -1,5 +1,6 @@
 .image-container {
   animation: pulse 2s ease 0s infinite alternate;
+  max-width: $containerWidth;
   &.loaded {
     animation: none;
   }

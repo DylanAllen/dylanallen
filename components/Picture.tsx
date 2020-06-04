@@ -6,14 +6,15 @@ interface Props {
   fbpath?: string,
   style?: CSSProperties,
   className?: string,
-  overlayed?: boolean
+  overlayed?: boolean,
+  onClick?: () => void
 }
 
 const greyPng = `, url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAQAAAAnOwc2AAAAEUlEQVR42mNMO8OAARiHsiAAVkoL/1ec1jIAAAAASUVORK5CYII=)`
 
 const Picture: React.FunctionComponent<Props> = (props) => {
 
-  const { style, src, fbpath, overlayed } = props;
+  const { style, src, fbpath, overlayed, onClick } = props;
   const [url, setImg] = useState('');
   const [opacity, setOpacity] = useState(0);
   const [animate, setAnimate] = useState(true);
@@ -49,7 +50,7 @@ const Picture: React.FunctionComponent<Props> = (props) => {
             opacity: opacity
           }}
         ></div>
-        <img src={url} style={{display: 'none'}} onLoad={loaded} />
+        <img src={url} style={{display: 'none'}} onLoad={loaded} onClick={onClick}/>
     </div>
   )
 

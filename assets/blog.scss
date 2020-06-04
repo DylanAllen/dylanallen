@@ -1,42 +1,9 @@
 .post-list {
   .post-summary {
-    position: relative;
-    margin: 30px auto;
-    .post-card {
-      background-color: $dark;
-      color: $light;
-      padding: 40px 20px;
-      .post-floater {
-        background-color: $accent;
-        height: 106px;
-        width: 297px;
-        opacity: 0.5;
-        z-index: 99;
-        position: absolute;
-        left: -10%;
-        margin-top: -75px;
-      }
-    }
-    .post-desc {
-      margin-right: 25px;
-      width: 450px;
-      margin-left: 380px;
-      padding: 20px;
-      float: right;
-      line-height: 1.5;
-      font-size: 20px;
-    }
-    .post-image {
-      position: relative;
-      left: -10%;
-      div.image-div.overlay {
-        background-blend-mode: luminosity;
-      }
+    .post-title {
+      cursor: pointer;
     }
     .post-link {
-      position: relative;
-      right: -5%;
-      float: right;
       background-color: $accent; 
       color: $light;
       padding: 20px 35px;
@@ -51,30 +18,70 @@
   }
 }
 
+@media (min-width: 980px) {
+  .post-list {
+    .post-summary {
+      position: relative;
+      margin: 30px auto;
+      .post-card {
+        background-color: $dark;
+        color: $light;
+        padding: 40px 20px;
+        .post-floater {
+          background-color: $accent;
+          height: 106px;
+          width: 297px;
+          opacity: 0.5;
+          z-index: 99;
+          position: absolute;
+          left: -10%;
+          margin-top: -75px;
+        }
+      }
+      .post-desc {
+        margin-right: 25px;
+        width: 450px;
+        margin-left: 380px;
+        padding: 20px;
+        float: right;
+        line-height: 1.5;
+        font-size: 20px;
+      }
+      .post-image {
+        position: relative;
+        left: -10%;
+        div.image-div.overlay {
+          background-blend-mode: luminosity;
+        }
+      }
+      .post-link {
+        position: relative;
+        right: -5%;
+        float: right;
+      }
+    }
+  }
+}
+
 @media (max-width: 980px) {
   .post-list {
     .post-summary {
+      margin-bottom: 50px;
+      padding: 40px 0;
+      border-bottom: solid $dark2 2px;
       .post-card {
-        max-width: 100vw;
-        background-color: transparent;
-        padding: 0;
         .post-desc {
-          position: relative;
-          margin: 0;
-          background-color: $dark;
-          z-index: 10;
-          float: none;
-          max-width: 100vw;
+          min-width: 80vw;
         }
         .post-image {
-          margin-top:-25px;
-          position: relative;
-          z-index: 1;
-          max-width: 65vw;
-          max-height: 50vw;
+          @include fullWidth;
+          margin-top: 25px;
         }
         .post-link {
-          margin-top: -50px;
+          width: $containerWidth;
+          display: block;
+          text-align: center;
+          margin: auto;          
         }
       }
     }

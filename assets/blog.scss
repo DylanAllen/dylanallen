@@ -50,3 +50,33 @@
     }
   }
 }
+
+@media (max-width: 980px) {
+  .post-list {
+    .post-summary {
+      .post-card {
+        max-width: 100vw;
+        background-color: transparent;
+        padding: 0;
+        .post-desc {
+          position: relative;
+          margin: 0;
+          background-color: $dark;
+          z-index: 10;
+          float: none;
+          max-width: 100vw;
+        }
+        .post-image {
+          margin-top:-25px;
+          position: relative;
+          z-index: 1;
+          max-width: 65vw;
+          max-height: 50vw;
+        }
+        .post-link {
+          margin-top: -50px;
+        }
+      }
+    }
+  }
+}

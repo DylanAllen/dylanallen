@@ -1,48 +1,69 @@
 import { auth as firebaseAuth, storage } from 'firebase'
-import { initApp } from '../utils/firebase'; 
+import { Subject } from 'rxjs';
 
 interface Auth {
     init: () => void;
     login: () => Promise<firebase.User | null>;
-    initialized: boolean;
+    logout: () => Promise<any>;
     provider: firebaseAuth.GoogleAuthProvider;
-    user: firebase.User | null;
     storage: () => storage.Storage;
+}
+
+export interface AuthState {
+  user$?: Subject<firebase.User | null>;
+  user?: firebase.User | null;
+  initialized?: boolean;
+}
+
+export const authState = {
+  user$: new Subject<firebase.User | null>(),
+  user: null,
+  initialized: false,
 }
 
 export const auth: Auth = {
     provider: new firebaseAuth.GoogleAuthProvider(),
-    user: null,
-    initialized: false,
     init: async () => {
-        auth.initialized = true;
-        initApp();
-        auth.provider.addScope('https://www.googleapis.com/auth/contacts.readonly')
-        firebaseAuth().onAuthStateChanged(function(user) {
-            console.log('state change', user);
-            if (user) {
-              auth.user = user;
-            }
-        });
+      console.log('init');
+      updateState({initialized: true});
+      authState.user$.subscribe((user: firebase.User | null) => {
+        updateState({user: user});
+      })
+      auth.provider.addScope('https://www.googleapis.com/auth/contacts.readonly')
+      firebaseAuth().onAuthStateChanged(function(user) {
+          if (user) {
+            authState.user$.next(user);
+          }
+      });
     },
     login: () => {
-        if (!auth.initialized) auth.init();
-        if (!auth.user) {
+        if (!authState.initialized) auth.init();
+        if (!authState.user) {
         
             return firebaseAuth().signInWithPopup(auth.provider).then((result) => {           
-                auth.user = result.user;
-                console.log(auth.user);
-                return auth.user;
+                authState.user$.next(result.user);
+                return result.user;
             }).catch(function(error) {
                 console.log(error);
                 return null;
             });
         } else {
-            return Promise.resolve(auth.user);
+            return Promise.resolve(authState.user);
         }
+    },
+    logout: () => {
+      return firebaseAuth().signOut().then(res => {
+        authState.user$.next(null);
+        return res;
+      });
     },
     storage: () => {
         return storage();
     }
 }
+
+export const updateState = (udpatedData: AuthState) => ({
+  ...authState,
+  ...udpatedData,
+});
 

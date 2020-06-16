@@ -1,9 +1,12 @@
 import Layout from '../components/Layout'
 import { Heading, Paragraph, WorldMap } from 'grommet';
+import { NextPage } from 'next';
 
-const IndexPage = () => (
+const IndexPage: NextPage = () => {
+
+  return (
   <Layout>
-    <Heading>DylanAllen.net</Heading>
+    <Heading>Dylan Allen</Heading>
     <Paragraph>
       New site in progress.
     </Paragraph>
@@ -26,6 +29,6 @@ const IndexPage = () => (
       ]}
     />
   </Layout>
-)
+)}
 
 export default IndexPage

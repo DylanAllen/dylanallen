@@ -34,7 +34,7 @@ const PostCard: React.FunctionComponent<{ post: MetaType }> = ({ post }) => {
   )
 }
 
-const Blog: React.FunctionComponent = () => {
+const Blog: React.FunctionComponent<{state: any }> = () => {
 
   return (
     <Layout title="Blog | Dylan Allen | JavaScript Developer | Frontend Web">

@@ -1,8 +1,8 @@
 import Layout from '../../components/Layout'
 import { Heading, Paragraph } from 'grommet';
 
-const Third: React.FunctionComponent = () => (
-  <Layout title="Third Post | Dylan Allen | JavaScript Developer | Frontend Web">
+const Third: React.FunctionComponent<{state: any}> = ({state}) => (
+  <Layout title="Third Post | Dylan Allen | JavaScript Developer | Frontend Web" state={state}>
     <Heading>Third post</Heading>
     <Paragraph>
       this is my blog

@@ -6,7 +6,7 @@ import { Nav } from 'grommet';
 import Link from './Link';
 import { auth } from '../utils/auth';
 import {Github, StackOverflow, Linkedin, Login, Logout} from 'grommet-icons';
-import { UserContext } from '../pages/_app';
+import { Context } from '../pages/_app';
 import { useContext } from 'react';
 
 type Props = {
@@ -26,24 +26,24 @@ const textVariants = {
 
 const Layout: React.FunctionComponent<Props> = (props) => {
 
-  const user = useContext(UserContext);
+  const state = useContext(Context);
 
   const { children } = props;
   const title = props.title || 'Dylan Allen | JavaScript Developer | Frontend Web | React | Serverless';
 
   const onLogin = () => {
     auth.login().then((newUser) => {
-      user.changeUser(newUser);
+      state.updateState({user: newUser});
     });
   }
 
   const onLogout = () => {
     auth.logout().then(() => {
-      user.changeUser(null);
+      state.updateState({user: null});
     })
   }
     return (
-      <div>
+      <div className={(state.loaded) ? 'loaded' : 'invisible'}>
         <Head>
           <title>{title}</title>
           <meta charSet="utf-8" />
@@ -65,9 +65,9 @@ const Layout: React.FunctionComponent<Props> = (props) => {
               <Link href="https://github.com/DylanAllen" a11yTitle="Github"><Github /></Link>
               <Link href="https://stackoverflow.com/story/dylanallen" a11yTitle="StackOverflow"><StackOverflow /></Link>
               <Link href="https://www.linkedin.com/in/dylanallen/" a11yTitle="Linkedin"><Linkedin /></Link>
-              {!user.user && <Link onClick={onLogin} a11yTitle="Login"><Login /></Link>}
-              {user.user && <Link onClick={onLogout} a11yTitle="Logout"><Logout /></Link>}
-              <span>{user.user?.displayName}</span>
+              {!state.user && <Link onClick={onLogin} a11yTitle="Login"><Login /></Link>}
+              {state.user && <Link onClick={onLogout} a11yTitle="Logout"><Logout /></Link>}
+              <span>{state.user?.displayName}</span>
             </Nav>
           </footer>
         </main>

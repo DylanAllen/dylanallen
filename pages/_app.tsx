@@ -9,24 +9,30 @@ import React from 'react';
 
 export interface StateType {
   user?: firebase.User | null;
-  changeUser: (user: firebase.User | null) => void;
+  updateState: (state: StateFragment) => void;
+  loaded?: boolean;
+}
+
+export interface StateFragment {
+  user?: firebase.User | null;
+  updateState?: (state: StateType) => void;
   loaded?: boolean;
 }
 
 const initialState: StateType = {
   user: null,
-  changeUser: (user: firebase.User | null) => console.log(user),
+  updateState: (state: StateFragment) => console.log(state),
   loaded: false
 }
 
-export const UserContext: React.Context<StateType> = React.createContext(initialState)
+export const Context: React.Context<StateType> = React.createContext(initialState)
 
 export default class MyApp extends App {
 
   state: StateType = {
     user: null,
-    changeUser: (user: firebase.User | null) => {
-      this.setState({user: user});
+    updateState: (state: StateFragment) => {
+      this.setState(state);
     }
   }
 
@@ -55,9 +61,9 @@ export default class MyApp extends App {
     return (
       <Grommet theme={theme}>
         <AnimatePresence exitBeforeEnter>
-          <UserContext.Provider value={this.state}>
+          <Context.Provider value={this.state}>
             <Component {...pageProps} key={router.route} />
-          </UserContext.Provider>
+          </Context.Provider>
         </AnimatePresence>
       </Grommet>
     )

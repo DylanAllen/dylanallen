@@ -24,7 +24,6 @@ export const authState = {
 export const auth: Auth = {
     provider: new firebaseAuth.GoogleAuthProvider(),
     init: async () => {
-      console.log('init');
       updateState({initialized: true});
       authState.user$.subscribe((user: firebase.User | null) => {
         updateState({user: user});

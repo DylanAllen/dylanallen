@@ -4,19 +4,19 @@ import { theme } from '../assets/theme';
 import { AnimatePresence } from 'framer-motion';
 import App, { AppProps } from 'next/app'
 import { initApp } from '../utils/firebase';
-import { authState, AuthState } from '../utils/auth';
+import { authState, auth } from '../utils/auth';
 import React from 'react';
 
 export interface StateType {
   user?: firebase.User | null;
-  changeUser: (user: firebase.User | null) => void 
+  changeUser: (user: firebase.User | null) => void;
+  loaded?: boolean;
 }
-
-initApp()
 
 const initialState: StateType = {
   user: null,
-  changeUser: (user: firebase.User | null) => console.log(user)
+  changeUser: (user: firebase.User | null) => console.log(user),
+  loaded: false
 }
 
 export const UserContext: React.Context<StateType> = React.createContext(initialState)
@@ -32,6 +32,8 @@ export default class MyApp extends App {
 
   constructor(props: AppProps) {
     super(props);
+    initApp();
+    auth.init();
   }
 
   componentDidMount() {
@@ -42,10 +44,10 @@ export default class MyApp extends App {
         }
       })
     }
-  }
-
-  updateState(newData: AuthState) {
-    this.state = {...this.state, ...newData};
+    if (!this.state.loaded) {
+      console.log(this.state);
+      this.setState({loaded: true});
+    }
   }
 
   render() {

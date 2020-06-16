@@ -42,8 +42,6 @@ const Layout: React.FunctionComponent<Props> = (props) => {
       user.changeUser(null);
     })
   }
-
-    auth.init();
     return (
       <div>
         <Head>

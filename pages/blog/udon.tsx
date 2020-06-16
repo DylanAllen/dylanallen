@@ -43,8 +43,8 @@ Once this product is ready for prime time I will probably set up a brochure site
 That is about it. I would gladly welcome any contributions to the project, and in the near future, I will be looking for a brave agency to volunteer for beta testing!
 `;
 
-const UdonOne: React.FunctionComponent<{state: any}> = ({state}) => (
-  <Layout title={`${meta.title}  | Dylan Allen | JavaScript Developer | Frontend Web`} state={state}>
+const UdonOne: React.FunctionComponent<{state: any}> = () => (
+  <Layout title={`${meta.title}  | Dylan Allen | JavaScript Developer | Frontend Web`}>
     <Heading>{meta.title}</Heading>
     <Markdown>{md}</Markdown>
   </Layout>

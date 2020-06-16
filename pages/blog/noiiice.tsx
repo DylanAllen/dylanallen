@@ -20,10 +20,10 @@ Noiiice is an open source blog platform built with the Serverless framework, Nux
 
 I am still actively developing this platform (in my spare time) so more features will be coming soon. If you want to give it a try, go to the GitHub page and follow the deployment instruction on the README. If you run into issue, or have question, feel free to post a Github issue on the repo, or comment on this post: [Install Noiiice](https://noiiice.com/post/install)`;
 
-const Noiiice: React.FunctionComponent<{ state: any}>  = ({ state }) => {
+const Noiiice: React.FunctionComponent<{ state: any}>  = () => {
 
   return (
-    <Layout title={`${meta.title} | Dylan Allen | JavaScript Developer | Frontend Web`} state={state}>
+    <Layout title={`${meta.title} | Dylan Allen | JavaScript Developer | Frontend Web`}>
       <Heading>{meta.title}</Heading>
       <Picture fbpath={meta.image} style={{width: '100%', height: '45vw', maxHeight: '700px' }}></Picture>
       <Markdown>{md}</Markdown>

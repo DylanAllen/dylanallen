@@ -1,4 +1,4 @@
-import { auth as firebaseAuth, storage } from 'firebase'
+import { auth as firebaseAuth, storage } from 'firebase';
 import { Subject } from 'rxjs';
 
 interface Auth {

@@ -1,6 +1,7 @@
 import Layout from '../../components/Layout'
 import { Heading, Markdown } from 'grommet';
 import Picture from '../../components/Picture';
+import Comments from '../../components/Comments';
 
 
 const md = `For the past several months I have been working on a blog CMS, and it is finally ready to use! I have a few more features that I wan to add before I give it to 1.0 distinction, but it is available on [Github](https://github.com/DylanAllen/noiiice) to clone and deploy. You can see the demo site here: [Noiiice.com](https://noiiice.com/).  
@@ -27,6 +28,7 @@ const Noiiice: React.FunctionComponent<{ state: any}>  = () => {
       <Heading>{meta.title}</Heading>
       <Picture fbpath={meta.image} style={{width: '100%', height: '45vw', maxHeight: '700px' }}></Picture>
       <Markdown>{md}</Markdown>
+      <Comments slug={meta.slug}></Comments>
     </Layout>
   )
 }

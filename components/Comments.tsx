@@ -1,7 +1,7 @@
-import { useContext, useState, useEffect, FormEvent, ChangeEvent } from "react";
+import { useContext, useState, useEffect, ChangeEvent } from "react";
 import { Context } from '../pages/_app';
 import { firestore } from 'firebase';
-import { Heading, TextArea, FormField } from 'grommet';
+import { Heading, TextArea, Button } from 'grommet';
 
 interface CommentProps {
   slug: string
@@ -36,41 +36,48 @@ const Comments: React.FunctionComponent<CommentProps> = ({ slug }) => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    firestore()
+
+    let unsunscribe: any;
+    if (unsunscribe) {
+      unsunscribe();
+    }
+    unsunscribe = firestore()
     .collection('comments')
     .doc(slug)
     .collection('comments')
     .onSnapshot((snapShot) => {
-      console.log(snapShot.docs);
-
       const data = snapShot.docs.map(doc => doc.data() as CommentType);
-      console.log(data);
       if (data) {
         updateComments(data);
       }
-      
-    })    
+    })   
 
   },[])
 
-  const postComment = (message: string) => {
-    const dt = new Date();
-    const id = dt.valueOf().toString();
+  const postComment = async (message: string) => {
+
     if (state.user) {
-      firestore()
-      .collection('comments')
-      .doc(slug)
-      .collection('comments')
-      .doc(id)
-      .set({
-        message: message,
-        userid: state.user.uid,
-        timestamp: new firestore.Timestamp(Math.floor(dt.valueOf()/1000), dt.getMilliseconds()),
-        displayname: state.user.displayName
-      }).then(resp => {
-        console.log(resp);
-        setMessage('');
+      const req = await fetch('/api/comments/post', {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          slug: slug,
+          message: message,
+          displayname: state.user.displayName,
+          userid: state.user.uid
+        })
       })
+      const res = await req.json()
+      if (res.message == 'Post submitted') {
+        setMessage('');
+      } else {
+        alert(res.message)
+      }
+      
     } else {
       alert('User not found');
     }    
@@ -80,15 +87,14 @@ const Comments: React.FunctionComponent<CommentProps> = ({ slug }) => {
     setMessage(event.target.value);
   }
 
-  const addComment = (event: FormEvent<HTMLFormElement>) => {
-    console.log(event);
+  const addComment = (event: any) => {
     event.preventDefault();
     postComment(message);
   }
    
   return (
     <div className="commentsContainer">
-      <Heading level={3}>Comments</Heading>
+      <Heading level={2}>Comments</Heading>
       <div className="comments">
         {(comments) ? comments.map((comment: any, i: number) => <Comment comment={comment} key={i}></Comment>) : <div>No comments</div>}
       </div>
@@ -96,9 +102,8 @@ const Comments: React.FunctionComponent<CommentProps> = ({ slug }) => {
         <form
           onSubmit={addComment}
         >
-          <FormField label="Post a comment." name="comment">
             <TextArea value={message} onChange={handleInputChange} ></TextArea>
-          </FormField>
+            <Button onClick={addComment}>Post</Button>
         </form>
       </div> : <NoComment></NoComment>}
     </div>

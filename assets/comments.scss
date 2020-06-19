@@ -1,16 +1,32 @@
 .commentsContainer {
   border-top: solid 1px $light2;
 
+  .commentContainer {
+    background-color: $light3;
+    $commentPad: 20px;
+    padding: $commentPad;
+    position: relative;
+    .deleteComment {
+      position: absolute;
+      top: $commentPad;
+      right: $commentPad;
+      cursor: pointer;
+    }
+  }
+
   .comments {
     display: grid;
     grid-gap: 25px;
-    padding: 10px;
+    padding: 10px 0;    
     border-left: solid 3px $light2;
     margin-bottom: 25px;
     .comment {
       display: grid;
       grid-template-columns: auto 1fr;
       grid-gap: 12px;
+      @media(max-width: 767px) {
+        grid-template-columns: 1fr;
+      }
       .username {
         font-size: 16px;
         color: $dark2;
@@ -21,11 +37,14 @@
         color: $accent2;
       }
       .message {
-        grid-column: 1/3;
+        @media(min-width: 768px) {
+          grid-column: 1/3;
+        }
         .messagespan {
           border-bottom: solid 1px $light2;
           display: inline-block;
           padding-bottom: 10px;
+          margin-bottom: 0;
         }
       }
     }

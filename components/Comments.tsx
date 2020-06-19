@@ -2,6 +2,7 @@ import { useContext, useState, useEffect, ChangeEvent } from "react";
 import { Context } from '../pages/_app';
 import { firestore } from 'firebase';
 import { Heading, TextArea, Button } from 'grommet';
+import { Trash } from 'grommet-icons';
 
 interface CommentProps {
   slug: string
@@ -13,6 +14,7 @@ interface CommentType {
   displayname: string;
   status: 'approved' | 'pending' | 'rejected';
   timestamp: firestore.Timestamp;
+  id: string;
 }
 
 const NoComment = () => (
@@ -21,19 +23,33 @@ const NoComment = () => (
   </div>
 )
 
-const Comment: React.FunctionComponent<{ comment: CommentType }> = ({ comment }) => (
-  <div className="comment">
-    <div className="username">{comment.displayname}</div>
-    <div className="timestamp">{comment.timestamp.toDate().toLocaleDateString()} {comment.timestamp.toDate().toLocaleTimeString()}</div>
-    <div className="message"><p className="messagespan">{comment.message}</p></div>
-  </div>
-)
+const deleteComment = async (id: string, ref: firestore.CollectionReference<firestore.DocumentData>) => {
+  try {
+    const del = await ref.doc(id).delete();
+    console.log(del);
+  } catch(err) {
+    console.error(err);
+    alert('Error deleting comment');
+  }   
+}
 
 const Comments: React.FunctionComponent<CommentProps> = ({ slug }) => {
   
   const state = useContext(Context)
   const [comments, updateComments] = useState<CommentType[]>([]);
   const [message, setMessage] = useState('');
+  const commentsRef = firestore().collection('comments').doc(slug).collection('comments');
+
+  const Comment: React.FunctionComponent<{ comment: CommentType } & {dbRef: firestore.CollectionReference<firestore.DocumentData>}> = ({ comment, dbRef }) => (
+    <div className="commentContainer">
+      {(state.user && state.user.uid === comment.userid) && <Trash className="deleteComment" onClick={() => {deleteComment(comment.id, dbRef)}} />}  
+      <div className="comment">
+        <div className="username">{comment.displayname}</div>
+        <div className="timestamp">{comment.timestamp.toDate().toLocaleDateString()} {comment.timestamp.toDate().toLocaleTimeString()}</div>
+        <div className="message"><p className="messagespan">{comment.message}</p></div>
+      </div>
+    </div>
+  )
 
   useEffect(() => {
 
@@ -42,11 +58,11 @@ const Comments: React.FunctionComponent<CommentProps> = ({ slug }) => {
       unsunscribe();
     }
     unsunscribe = firestore()
-    .collection('comments')
-    .doc(slug)
-    .collection('comments')
+    commentsRef
     .onSnapshot((snapShot) => {
-      const data = snapShot.docs.map(doc => doc.data() as CommentType);
+      const data = snapShot.docs.map(doc => {
+        return { ...doc.data(), id: doc.id } as CommentType;
+      });
       if (data) {
         updateComments(data);
       }
@@ -96,7 +112,7 @@ const Comments: React.FunctionComponent<CommentProps> = ({ slug }) => {
     <div className="commentsContainer">
       <Heading level={2}>Comments</Heading>
       <div className="comments">
-        {(comments) ? comments.map((comment: any, i: number) => <Comment comment={comment} key={i}></Comment>) : <div>No comments</div>}
+        {(comments) ? comments.map((comment: any, i: number) => <Comment comment={comment} dbRef={commentsRef} key={i}></Comment>) : <div>No comments</div>}
       </div>
       {(state.user) ? <div>
         <form

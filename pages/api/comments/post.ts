@@ -33,7 +33,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         message: message,
         userid: userid,
         timestamp: new admin.firestore.Timestamp(Math.floor(dt.valueOf()/1000), dt.getMilliseconds()),
-        displayname: displayname
+        displayname: displayname,
+        status: 'pending'
       }).catch(err => {
         res.status(501).json({ message: "Post failed due to error", err: err})
         resolve();

@@ -59,6 +59,7 @@ const Comments: React.FunctionComponent<CommentProps> = ({ slug }) => {
     }
     unsunscribe = firestore()
     commentsRef
+    .where('status', '==', 'approved')
     .onSnapshot((snapShot) => {
       const data = snapShot.docs.map(doc => {
         return { ...doc.data(), id: doc.id } as CommentType;
@@ -119,7 +120,7 @@ const Comments: React.FunctionComponent<CommentProps> = ({ slug }) => {
           onSubmit={addComment}
         >
             <TextArea value={message} onChange={handleInputChange} ></TextArea>
-            <Button onClick={addComment}>Post</Button>
+            <Button primary onClick={addComment} label="Post Comment" />
         </form>
       </div> : <NoComment></NoComment>}
     </div>

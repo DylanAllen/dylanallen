@@ -15,6 +15,7 @@ interface CommentType {
   status: 'approved' | 'pending' | 'rejected';
   timestamp: firestore.Timestamp;
   id: string;
+  avatar?: string;
 }
 
 const NoComment = () => (
@@ -42,9 +43,9 @@ const Comments: React.FunctionComponent<CommentProps> = ({ slug }) => {
 
   const Comment: React.FunctionComponent<{ comment: CommentType } & {dbRef: firestore.CollectionReference<firestore.DocumentData>}> = ({ comment, dbRef }) => (
     <div className="commentContainer">
-      {(state.user && state.user.uid === comment.userid) && <Trash className="deleteComment" onClick={() => {deleteComment(comment.id, dbRef)}} />}  
+      {(state.user && state.user.uid === comment.userid) && <Trash color="#453762" className="deleteComment" onClick={() => {deleteComment(comment.id, dbRef)}} />}  
       <div className="comment">
-        <div className="username">{comment.displayname}</div>
+        <div className="username">{ comment.avatar ? <img src={comment.avatar} className="avatar-sm" /> : ''}<span>{comment.displayname}</span></div>
         <div className="timestamp">{comment.timestamp.toDate().toLocaleDateString()} {comment.timestamp.toDate().toLocaleTimeString()}</div>
         <div className="message"><p className="messagespan">{comment.message}</p></div>
       </div>
@@ -93,7 +94,8 @@ const Comments: React.FunctionComponent<CommentProps> = ({ slug }) => {
         message: message,
         displayname: state.user.displayName,
         userid: state.user.uid,
-        token: await state.user.getIdToken()
+        token: await state.user.getIdToken(),
+        avatar: state.user.photoURL
       }
 
       const post = await apiPost(payload, '/api/comments/post');

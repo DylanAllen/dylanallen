@@ -26,7 +26,7 @@ const validateUser = async (token: string, uid: string) => {
   
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   console.log(req.body);
-  const { message, slug, userid, displayname, token } = req.body;
+  const { message, slug, userid, displayname, token, avatar } = req.body;
   const dt = new Date();
   const id = dt.valueOf().toString();
   if (!admin.apps.length) {
@@ -47,7 +47,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           userid: userid,
           timestamp: new admin.firestore.Timestamp(Math.floor(dt.valueOf()/1000), dt.getMilliseconds()),
           displayname: displayname,
-          status: 'pending'
+          status: 'pending',
+          avatar: avatar ? avatar : ''
         }).catch(err => {
           res.status(501).json({ message: "Post failed due to error", err: err})
           resolve();

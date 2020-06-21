@@ -3,6 +3,7 @@ import { Context } from '../pages/_app';
 import { firestore } from 'firebase';
 import { Trash, CheckboxSelected } from 'grommet-icons';
 import { Heading } from 'grommet';
+import Link from './Link';
 
 interface CommentType {
   userid: string;
@@ -23,13 +24,13 @@ const AdminComments: React.FunctionComponent = () => {
 
   const Comment: React.FunctionComponent<{ comment: CommentType }> = ({ comment }) => (
     <div className="commentContainer">
-      <Trash className="deleteComment" onClick={() => {deleteComment(comment.slug, comment.id )}} />
-      { (comment.status !== 'approved') && <CheckboxSelected className="approveComment" onClick={() => {approveComment(comment.slug,comment.id)}} />}
+      <Trash color="#453762" className="deleteComment" onClick={() => {deleteComment(comment.slug, comment.id )}} />
+      { (comment.status !== 'approved') && <CheckboxSelected color="#453762" className="approveComment" onClick={() => {approveComment(comment.slug,comment.id)}} />}
       <div className="comment">
         <div className="username">{comment.displayname}</div>
         <div className="timestamp">{comment.timestamp.toDate().toLocaleDateString()} {comment.timestamp.toDate().toLocaleTimeString()}</div>
         <div className="message"><p className="messagespan">{comment.message}</p></div>
-        <div className="slug">{comment.slug}</div>
+        <div className="slug"><Link path={`/blog/${comment.slug}`} label={comment.slug} /></div>
         <div className="status">{comment.status}</div>
       </div>
     </div>

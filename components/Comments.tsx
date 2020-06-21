@@ -62,6 +62,7 @@ const Comments: React.FunctionComponent<CommentProps> = ({ slug }) => {
     .where('status', '==', 'approved')
     .onSnapshot((snapShot) => {
       const data = snapShot.docs.map(doc => {
+        console.log(doc.data());
         return { ...doc.data(), id: doc.id } as CommentType;
       });
       if (data) {
@@ -71,33 +72,40 @@ const Comments: React.FunctionComponent<CommentProps> = ({ slug }) => {
 
   },[])
 
-  const postComment = async (message: string) => {
+  const apiPost = async (payload: any, url: string) => {
 
+    return await fetch(url, {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
+
+  }
+
+  const postComment = async (message: string) => {
     if (state.user) {
-      const req = await fetch('/api/comments/post', {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          slug: slug,
-          message: message,
-          displayname: state.user.displayName,
-          userid: state.user.uid
-        })
-      })
-      const res = await req.json()
+      const payload = {
+        slug: slug,
+        message: message,
+        displayname: state.user.displayName,
+        userid: state.user.uid,
+        token: await state.user.getIdToken()
+      }
+
+      const post = await apiPost(payload, '/api/comments/post');
+      const res = await post.json()
       if (res.message == 'Post submitted') {
         setMessage('');
       } else {
         alert(res.message)
-      }
-      
+      } 
     } else {
       alert('User not found');
-    }    
+    }   
   }
 
   const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement>) => {

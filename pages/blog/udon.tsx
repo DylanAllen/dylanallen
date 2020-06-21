@@ -1,5 +1,6 @@
 import Layout from '../../components/Layout'
 import { Heading, Markdown } from 'grommet';
+import Comments from '../../components/Comments';
 
 const md = `<div class="greenstripe">
 <img src="https://firebasestorage.googleapis.com/v0/b/udon-pm.appspot.com/o/images%2Fudonlogo-icon-512x512.png?alt=media&token=d692b9d9-b46c-410a-a6f9-7d0cabd21834" class="centerimage">
@@ -47,6 +48,7 @@ const UdonOne: React.FunctionComponent<{state: any}> = () => (
   <Layout title={`${meta.title}  | Dylan Allen | JavaScript Developer | Frontend Web`}>
     <Heading>{meta.title}</Heading>
     <Markdown>{md}</Markdown>
+    <Comments slug={meta.slug}></Comments>
   </Layout>
 )
 

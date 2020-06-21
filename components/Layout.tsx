@@ -10,7 +10,7 @@ import { Context } from '../pages/_app';
 import { useContext } from 'react';
 
 type Props = {
-  children: React.ReactChild[]
+  children: React.ReactChild[] | React.ReactChild
   title?: string;
 }
 
@@ -42,6 +42,7 @@ const Layout: React.FunctionComponent<Props> = (props) => {
       state.updateState({user: null});
     })
   }
+
     return (
       <div className={(state.loaded) ? 'loaded' : 'invisible'}>
         <Head>

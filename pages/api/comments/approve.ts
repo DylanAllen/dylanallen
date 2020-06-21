@@ -12,58 +12,69 @@ const init = () => {
   });
 }
 
-const validateUser = async (token: string, uid: string) => {
+interface CommentType {
+  userid: string;
+  message: string;
+  displayname: string;
+  status: 'approved' | 'pending' | 'rejected';
+  timestamp: FirebaseFirestore.Timestamp;
+  id: string;
+}
+
+const validateUser = async (token: string, ref: FirebaseFirestore.DocumentReference<FirebaseFirestore.DocumentData>) => {
   const verify = await admin.auth().verifyIdToken(token)
   return new Promise((resolve) => {
     if (verify.uid) {
-      resolve(verify.uid === uid)
+      ref.get().then(doc => {
+        let data = doc.data() as CommentType;
+        if (data.userid = verify.uid) {
+          resolve(true)
+        } else {
+          resolve(false);
+        }
+      })
     } else {
       resolve(false);
     }
   })
   
 }
+
   
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   console.log(req.body);
-  const { message, slug, userid, displayname, token } = req.body;
-  const dt = new Date();
-  const id = dt.valueOf().toString();
+  const { slug, postid, token } = req.body;
   if (!admin.apps.length) {
     init()
   }
 
+  console.log('gettting db');
   const db = admin.firestore();
   const ref = db.collection('comments')
     .doc(slug)
     .collection('comments')
-    .doc(id)
+    .doc(postid)
 
-  if (await validateUser(token, userid)) {
+  if (await validateUser(token, ref)) {
+
     return new Promise(resolve => {
       ref
-        .set({
-          message: message,
-          userid: userid,
-          timestamp: new admin.firestore.Timestamp(Math.floor(dt.valueOf()/1000), dt.getMilliseconds()),
-          displayname: displayname,
-          status: 'pending'
+        .update({
+          status: 'approved'
         }).catch(err => {
-          res.status(501).json({ message: "Post failed due to error", err: err})
+          res.status(501).json({ message: "Approval failed due to error", err: err})
           resolve();
         }).then(() => {
-          res.status(200).json({ message: "Post submitted" })
+          res.status(200).json({ message: "Post approved" })
           resolve();
         })
-  
-      })
+    })
+
   } else {
 
     res.status(402).json({ message: "User not authorized"})
     return Promise.resolve()
-
+    
   }
-
-  
 
 }

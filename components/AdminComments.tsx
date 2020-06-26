@@ -3,7 +3,7 @@ import { Context } from '../pages/_app';
 import { firestore } from 'firebase';
 import { Trash, CheckboxSelected } from 'grommet-icons';
 import { Heading } from 'grommet';
-import Link from './Link';
+import Link from 'next/link';
 
 interface CommentType {
   userid: string;
@@ -30,7 +30,7 @@ const AdminComments: React.FunctionComponent = () => {
         <div className="username">{comment.displayname}</div>
         <div className="timestamp">{comment.timestamp.toDate().toLocaleDateString()} {comment.timestamp.toDate().toLocaleTimeString()}</div>
         <div className="message"><p className="messagespan">{comment.message}</p></div>
-        <div className="slug"><Link path={`/blog/${comment.slug}`} label={comment.slug} /></div>
+        <div className="slug"><Link href={`/blog/${comment.slug}`}><a>{comment.slug}</a></Link></div>
         <div className="status">{comment.status}</div>
       </div>
     </div>

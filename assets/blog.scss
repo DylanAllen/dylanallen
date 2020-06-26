@@ -5,11 +5,11 @@
     }
     .post-link {
       background-color: $accent; 
-      color: $light;
+      color: $text;
       padding: 20px 35px;
       transition: all 0.3s ease;
       &:hover {
-        background-color: $light;
+        background-color: $background;
         color: $accent;
         text-decoration: none;
         box-shadow: 0 0 5px $accent;
@@ -20,12 +20,14 @@
 
 @media (min-width: 980px) {
   .post-list {
+    max-width: 920px;
+    margin: auto;
     .post-summary {
       position: relative;
       margin: 30px auto;
       .post-card {
-        background-color: $dark;
-        color: $light;
+        background-color: $text;
+        color: $background;
         padding: 40px 20px;
         .post-floater {
           background-color: $accent;
@@ -52,6 +54,7 @@
         left: -10%;
         div.image-div.overlay {
           background-blend-mode: luminosity;
+          box-shadow: 0 0 2px rgba(10,10,10,0.1);
         }
       }
       .post-link {
@@ -68,7 +71,7 @@
     .post-summary {
       margin-bottom: 50px;
       padding: 40px 0;
-      border-bottom: solid $dark2 2px;
+      border-bottom: solid $grey 2px;
       .post-card {
         .post-desc {
           min-width: 80vw;
@@ -78,10 +81,11 @@
           margin-top: 25px;
         }
         .post-link {
-          width: $containerWidth;
+          width: auto;
+          max-width: 80%;
           display: block;
           text-align: center;
-          margin: auto;          
+          margin: -25px auto 0;          
         }
       }
     }

@@ -1,15 +1,14 @@
 import * as React from 'react'
-import Link from './Link'
-import { Nav } from 'grommet'
+import Link from 'next/link'
 
 const NavMenu: React.FunctionComponent<any> = () => {
 
   return (
-    <Nav direction="row-reverse" pad="medium">
-      <Link path="/blog" label="Blog" />
-      <Link path="/about" label="About" />
-      <Link path="/" label="Home" />
-    </Nav>
+    <nav id="mainnav">
+      <Link href="/blog"><a>Blog</a></Link>
+      <Link href="/about"><a>About</a></Link>
+      <Link href="/"><a>Home</a></Link>
+    </nav>
   )
 }
 

@@ -1,5 +1,5 @@
 import Layout from '../../components/Layout'
-import { Heading, Markdown } from 'grommet';
+import { Markdown } from 'grommet';
 import Comments from '../../components/Comments';
 
 const md = `<div class="greenstripe">
@@ -46,7 +46,7 @@ That is about it. I would gladly welcome any contributions to the project, and i
 
 const UdonOne: React.FunctionComponent<{state: any}> = () => (
   <Layout title={`${meta.title}  | Dylan Allen | JavaScript Developer | Frontend Web`}>
-    <Heading>{meta.title}</Heading>
+    <h1>{meta.title}</h1>
     <Markdown>{md}</Markdown>
     <Comments slug={meta.slug}></Comments>
   </Layout>

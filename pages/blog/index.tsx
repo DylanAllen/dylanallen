@@ -1,9 +1,8 @@
 import Layout from '../../components/Layout'
-import { Heading, Paragraph, Box } from 'grommet';
 import { meta as Udon } from './udon';
 import { meta as Noiiice } from './noiiice';
 import { MetaType } from '../../interfaces';
-import Link from '../../components/Link';
+import Link from 'next/link';
 import Picture from '../../components/Picture';
 import { useRouter } from 'next/router';
 
@@ -22,12 +21,12 @@ const PostCard: React.FunctionComponent<{ post: MetaType }> = ({ post }) => {
 
   return (
     <article className="post-summary">
-      <Heading className="post-title" level={2} onClick={() => {gotToPost(post.slug)}}>{post.title}</Heading>
+      <h2 className="post-title" onClick={() => {gotToPost(post.slug)}}>{post.title}</h2>
       <div className="post-card">
-        <Paragraph className="post-desc">{post.description}</Paragraph>   
+        <p className="post-desc">{post.description}</p>   
         <Picture className="post-image" fbpath={post.image} style={{height: "300px", width: "400px"}} overlayed={true} onClick={() => {gotToPost(post.slug)}}/>   
         <div className="post-floater"></div>
-        <Link className="post-link" path={`/blog/${post.slug}`}>View Post</Link>
+        <Link href={`/blog/${post.slug}`}><a className="post-link">View Post</a></Link>
         <div className="clear"></div>
       </div>
     </article>
@@ -38,10 +37,10 @@ const Blog: React.FunctionComponent<{state: any }> = () => {
 
   return (
     <Layout title="Blog | Dylan Allen | JavaScript Developer | Frontend Web">
-          <Heading>Blog</Heading>
-          <Box className="post-list">
+          <h1>Blog</h1>
+          <div className="post-list">
             {posts.map(post => <PostCard post={post} key={post.slug}></PostCard>)}
-          </Box>
+          </div>
     </Layout>
   )
 }

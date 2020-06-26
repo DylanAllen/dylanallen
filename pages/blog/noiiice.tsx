@@ -1,5 +1,5 @@
 import Layout from '../../components/Layout'
-import { Heading, Markdown } from 'grommet';
+import { Markdown } from 'grommet';
 import Picture from '../../components/Picture';
 import Comments from '../../components/Comments';
 
@@ -25,7 +25,7 @@ const Noiiice: React.FunctionComponent<{ state: any}>  = () => {
 
   return (
     <Layout title={`${meta.title} | Dylan Allen | JavaScript Developer | Frontend Web`}>
-      <Heading>{meta.title}</Heading>
+      <h1>{meta.title}</h1>
       <Picture fbpath={meta.image} style={{width: '100%', height: '45vw', maxHeight: '700px' }}></Picture>
       <Markdown>{md}</Markdown>
       <Comments slug={meta.slug}></Comments>

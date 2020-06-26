@@ -3,7 +3,6 @@ import Head from 'next/head'
 import NavMenu from './NavMenu'
 import { motion } from 'framer-motion';
 import { Nav } from 'grommet';
-import Link from './Link';
 import { auth } from '../utils/auth';
 import {Github, StackOverflow, Linkedin, Login, Logout} from 'grommet-icons';
 import { Context } from '../pages/_app';
@@ -44,7 +43,7 @@ const Layout: React.FunctionComponent<Props> = (props) => {
   }
 
     return (
-      <div className={(state.loaded) ? 'loaded' : 'invisible'}>
+      <div >
         <Head>
           <title>{title}</title>
           <meta charSet="utf-8" />
@@ -63,11 +62,11 @@ const Layout: React.FunctionComponent<Props> = (props) => {
           </div>
           <footer className="container">
             <Nav direction="row">
-              <Link href="https://github.com/DylanAllen" a11yTitle="Github"><Github /></Link>
-              <Link href="https://stackoverflow.com/story/dylanallen" a11yTitle="StackOverflow"><StackOverflow /></Link>
-              <Link href="https://www.linkedin.com/in/dylanallen/" a11yTitle="Linkedin"><Linkedin /></Link>
-              {!state.user && <Link onClick={onLogin} a11yTitle="Login"><Login /></Link>}
-              {state.user && <Link onClick={onLogout} a11yTitle="Logout"><Logout /></Link>}
+              <a href="https://github.com/DylanAllen" ><Github a11yTitle="Github" /></a>
+              <a href="https://stackoverflow.com/story/dylanallen"><StackOverflow a11yTitle="StackOverflow"/></a>
+              <a href="https://www.linkedin.com/in/dylanallen/"><Linkedin a11yTitle="Linkedin"/></a>
+              {!state.user && <a onClick={onLogin} title="Login"><Login /></a>}
+              {state.user && <a onClick={onLogout} title="Logout"><Logout /></a>}
               <span>{state.user?.displayName}</span>
             </Nav>
           </footer>

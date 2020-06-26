@@ -1,6 +1,4 @@
-import { Grommet } from 'grommet'
 import '../assets/style.scss';
-import { theme } from '../assets/theme';
 import { AnimatePresence } from 'framer-motion';
 import App, { AppProps } from 'next/app'
 import { initApp } from '../utils/firebase';
@@ -59,13 +57,11 @@ export default class MyApp extends App {
   render() {
     const { Component, pageProps, router } = this.props;
     return (
-      <Grommet theme={theme}>
         <AnimatePresence exitBeforeEnter>
           <Context.Provider value={this.state}>
             <Component {...pageProps} key={router.route} />
           </Context.Provider>
         </AnimatePresence>
-      </Grommet>
     )
   }
 }

@@ -1,13 +1,29 @@
 body {
-    background-color: $light;
+    background-color: $background;
     color: #ffffff;
     margin: 0;
+    font-family: 'Roboto Mono', monospace;
 }
 .loaded {
   transition: opacity 0.3s ease;
 }
 .invisible {
   opacity: 0;
+}
+#mainnav {
+  display: flex;
+  flex-direction: row-reverse;
+  a {
+    display: inline-block;
+    padding: 10px;
+  }
+}
+a {
+  text-decoration: none;
+  color: $accent;
+  &:hover {
+    color: $accent2;
+  }
 }
 main#main {
     min-height: 100vh;

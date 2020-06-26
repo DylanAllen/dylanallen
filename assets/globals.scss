@@ -1,10 +1,9 @@
-$dark: #0F0D14;
-$light: #FAFAFB;
-$accent: #453762;
-$light2: #6e6d7a;
-$light3: #f4f2f9;
-$dark2: #554F59;
-$accent2: #7E6D70;
+$background: #202021;
+$background2: #111111;
+$text: #ffffff;
+$accent: #804eed;
+$accent2: #4ee5ed;
+$grey: #b5bebf;
 
 $containerWidth: calc(100vw - 30px);
 
@@ -14,3 +13,5 @@ $containerWidth: calc(100vw - 30px);
   margin-left: -15px;
   margin-right: -15px;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,300;0,500;1,300;1,500&display=swap');

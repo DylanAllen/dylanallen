@@ -23,11 +23,18 @@ I am still actively developing this platform (in my spare time) so more features
 
 const Noiiice: React.FunctionComponent<{ state: any}>  = () => {
 
+  const Comps = {
+    "p": {
+      "component": "paragraph",
+      "props": {"fill": 'true'}
+    }
+  }
+
   return (
     <Layout title={`${meta.title} | Dylan Allen | JavaScript Developer | Frontend Web`}>
       <h1>{meta.title}</h1>
       <Picture fbpath={meta.image} style={{width: '100%', height: '45vw', maxHeight: '700px' }}></Picture>
-      <Markdown>{md}</Markdown>
+      <Markdown components={Comps}>{md}</Markdown>
       <Comments slug={meta.slug}></Comments>
     </Layout>
   )

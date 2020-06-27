@@ -1,6 +1,6 @@
 .commentsContainer {
   border-top: solid 1px $grey;
-
+  margin-top: 40px;
   .commentContainer {
     background-color: $background2;
     box-shadow: 0 0 15px $background2;
@@ -28,7 +28,7 @@
       display: grid;
       grid-template-columns: auto 1fr;
       grid-gap: 12px;
-      align-items: end;
+      align-items: center;
       @media(max-width: 767px) {
         grid-template-columns: 1fr;
       }
@@ -36,6 +36,9 @@
         font-size: 16px;
         color: $text;
         font-weight: 600;
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
       }
       .timestamp {
         font-size: 16px;

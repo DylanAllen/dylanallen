@@ -1,19 +1,18 @@
 import Layout from '../components/Layout'
-import { Heading, Paragraph } from 'grommet';
 
 const Leyla: React.FunctionComponent<{state: any }> = () => (
   <Layout title="About Leyla Allen | 5 year old | I love you">
-    <Heading>Leyla</Heading>
+    <h1>Leyla</h1>
 
-      <Paragraph fill={true}>
+      <p>
         Leyla. i love you. You are talented and good. 
-      </Paragraph>
-      <Paragraph fill={true}>
+      </p>
+      <p>
         Leyla Rose Allen and you. Dad where are you? Let the world come to you.
-      </Paragraph>
-      <Paragraph fill={true}>
-        leyla i am 5. and you leyla.
-      </Paragraph>
+      </p>
+      <p>
+        leyla i am 5. and you leyla.mom and dad.
+      </p>
   </Layout>
 )
 

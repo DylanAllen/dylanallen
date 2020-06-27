@@ -26,8 +26,7 @@ const NoComment = () => (
 
 const deleteComment = async (id: string, ref: firestore.CollectionReference<firestore.DocumentData>) => {
   try {
-    const del = await ref.doc(id).delete();
-    console.log(del);
+    await ref.doc(id).delete();
   } catch(err) {
     console.error(err);
     alert('Error deleting comment');
@@ -49,7 +48,6 @@ const apiPost = async (payload: any, url: string) => {
 }
 
 const Comment: React.FunctionComponent<{ comments: CommentType[], dbRef: firestore.CollectionReference<firestore.DocumentData>, uid: string } > = ({ comments, dbRef, uid }) => {
-  console.log('render-comment')
   return (
     <div>
       {comments.map((comment: any) => 
@@ -133,7 +131,6 @@ const Comments: React.FunctionComponent<CommentProps> = ({ slug }) => {
     .where('status', '==', 'approved')
     .onSnapshot((snapShot) => {
       const data = snapShot.docs.map(doc => {
-        console.log(doc.data());
         return { ...doc.data(), id: doc.id } as CommentType;
       });
       if (data) {

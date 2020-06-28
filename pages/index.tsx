@@ -7,7 +7,7 @@ const IndexPage: NextPage = () => {
   <Layout>
     <h1>Dylan Allen</h1>
     <p>
-      New site in progress.
+      JavaScript Developer
     </p>
   </Layout>
 )}

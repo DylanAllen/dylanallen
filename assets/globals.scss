@@ -6,6 +6,7 @@ $accent2: #4ee5ed;
 $grey: #b5bebf;
 
 $containerWidth: calc(100vw - 30px);
+$containerPx: 1200px;
 
 @mixin fullWidth {
   width: 100vw!important;

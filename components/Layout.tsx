@@ -2,11 +2,9 @@ import * as React from 'react'
 import Head from 'next/head'
 import NavMenu from './NavMenu'
 import { motion } from 'framer-motion';
-import { Nav } from 'grommet';
-import { auth } from '../utils/auth';
-import {Github, StackOverflow, Linkedin, Login, Logout} from 'grommet-icons';
-import { Context } from '../pages/_app';
-import { useContext } from 'react';
+import { ContactInfo } from 'grommet-icons';
+import Link from 'next/link';
+import Footer from './Footer';
 
 type Props = {
   children: React.ReactChild[] | React.ReactChild
@@ -25,22 +23,8 @@ const textVariants = {
 
 const Layout: React.FunctionComponent<Props> = (props) => {
 
-  const state = useContext(Context);
-
   const { children } = props;
   const title = props.title || 'Dylan Allen | JavaScript Developer | Frontend Web | React | Serverless';
-
-  const onLogin = () => {
-    auth.login().then((newUser) => {
-      state.updateState({user: newUser});
-    });
-  }
-
-  const onLogout = () => {
-    auth.logout().then(() => {
-      state.updateState({user: null});
-    })
-  }
 
     return (
       <div >
@@ -50,7 +34,12 @@ const Layout: React.FunctionComponent<Props> = (props) => {
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <main id="main">
-          <header className="container">
+          <header id="mainheader" className="container">
+            <Link href="/">
+              <a>
+                <ContactInfo className="headerlogo" style={{height: "40px", width: "40px" }} />
+              </a>
+            </Link>
             <NavMenu></NavMenu>
           </header>
           <div className="container maincontainer">
@@ -60,16 +49,7 @@ const Layout: React.FunctionComponent<Props> = (props) => {
             </motion.div>
           </motion.div>
           </div>
-          <footer className="container">
-            <Nav direction="row">
-              <a href="https://github.com/DylanAllen" ><Github a11yTitle="Github" /></a>
-              <a href="https://stackoverflow.com/story/dylanallen"><StackOverflow a11yTitle="StackOverflow"/></a>
-              <a href="https://www.linkedin.com/in/dylanallen/"><Linkedin a11yTitle="Linkedin"/></a>
-              {!state.user && <a onClick={onLogin} title="Login"><Login /></a>}
-              {state.user && <a onClick={onLogout} title="Logout"><Logout /></a>}
-              <span>{state.user?.displayName}</span>
-            </Nav>
-          </footer>
+          <Footer />
         </main>
       </div>
     )

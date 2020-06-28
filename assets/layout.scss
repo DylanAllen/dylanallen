@@ -11,14 +11,27 @@ body {
 .invisible {
   opacity: 0;
 }
-#mainnav {
-  display: flex;
-  flex-direction: row-reverse;
-  a {
-    display: inline-block;
-    padding: 10px;
+
+header#mainheader {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  .headerlogo {
+    fill: $accent;
+    stroke: $accent;
+  }
+  #mainnav {
+    display: flex;
+    flex-direction: row-reverse;
+    a {
+      display: inline-block;
+      padding: 10px;
+    }
   }
 }
+
 a {
   text-decoration: none;
   color: $accent;
@@ -29,13 +42,15 @@ a {
 main#main {
     min-height: 100vh;
     width: 100vw;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 .container {
-    width: 1400px;
+    width: $containerPx;
     max-width: $containerWidth;
     padding: 0 15px;
     margin: auto;
-    @media (max-width: 1400px) {
+    @media (max-width: $containerPx) {
       margin: 0;
     }
 }
@@ -44,8 +59,37 @@ main#main {
     margin: 20px auto;
 }
 
+a svg {
+  height: 24px;
+  width: 24px;
+}
 footer.container {
     padding: 30px 15px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    .footernav {
+      display: flex;
+      a {
+        padding: 0 10px;
+        &:first-of-type {
+          padding-left: 0;
+        }
+      }
+    }
+    a.authicon {
+      display: inline-flex;
+      svg {
+        fill: $accent;
+        stroke: $accent;
+      }
+      &:hover {
+        cursor: pointer;
+        svg {
+          fill: $accent2;
+          stroke: $accent2;
+        }
+      }
+    }
 }
 
 .clear {

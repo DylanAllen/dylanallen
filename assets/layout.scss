@@ -78,6 +78,7 @@ footer.container {
     }
     a.authicon {
       display: inline-flex;
+      margin-left: 10px;
       svg {
         fill: $accent;
         stroke: $accent;
@@ -89,6 +90,16 @@ footer.container {
           stroke: $accent2;
         }
       }
+    }
+    .user-status {
+      display: flex;
+      align-items: center;
+    }
+    .footer-profile-pic {
+      height: 40px;
+      width: 40px;
+      border-radius: 25px;
+      margin-right: 10px;
     }
 }
 

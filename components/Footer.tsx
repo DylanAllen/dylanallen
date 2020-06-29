@@ -28,7 +28,7 @@ const Footer: React.FunctionComponent<any> = () => {
         <a href="https://www.linkedin.com/in/dylanallen/"><Linkedin a11yTitle="Linkedin"/></a>
       </nav>
       <div id="authnav">
-        <span>{(state.user) ? <span>logged in as {state.user.displayName} <a className="authicon" onClick={onLogout} title="Logout"><Logout a11yTitle="Logout" /></a></span> : <a className="authicon" onClick={onLogin} title="Login"><Login a11yTitle="Login" />&nbsp;Click here to login</a>}</span>
+        <span>{(state.user) ? <span className="user-status">{(state.user.photoURL) ? <img className="footer-profile-pic" src={state.user.photoURL} /> : ''}{state.user.displayName} <a className="authicon" onClick={onLogout} title="Logout"><Logout a11yTitle="Logout" /></a></span> : <a className="authicon" onClick={onLogin} title="Login"><Login a11yTitle="Login" />&nbsp;Login</a>}</span>
       </div>
     </footer>
   )

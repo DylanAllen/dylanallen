@@ -1,0 +1,16 @@
+.big-heading {
+  font-size: 12vw;
+  margin-bottom: 0;
+  @media (min-width: $containerPx) {
+    font-size: 140px;
+  }
+}
+
+.tagline {
+  font-size: 5vw;
+  display: block;
+  color: $accent;
+  @media (min-width: $containerPx) {
+    font-size: 60px;
+  }
+}

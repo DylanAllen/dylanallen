@@ -6,7 +6,6 @@ import Link from 'next/link';
 import Picture from '../../components/Picture';
 import { useRouter } from 'next/router';
 
-
 let posts: MetaType[] = [
   Noiiice,
   Udon

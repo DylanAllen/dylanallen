@@ -10,7 +10,26 @@
   font-size: 5vw;
   display: block;
   color: $accent;
+  letter-spacing: -0.6vw;
   @media (min-width: $containerPx) {
     font-size: 60px;
+    letter-spacing: -7px;
+  }
+}
+
+.introtext {
+  font-size: 20px;
+  padding: 0 15px;
+}
+
+$sectionPadding: 60px;
+
+section {
+  padding: $sectionPadding 0;
+  &.inverted {
+    background-color: $text;
+    color: $background;
+    @include fullWidth;
+    padding: $sectionPadding 0;
   }
 }

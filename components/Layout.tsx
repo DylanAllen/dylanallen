@@ -2,7 +2,6 @@ import * as React from 'react'
 import Head from 'next/head'
 import NavMenu from './NavMenu'
 import { motion } from 'framer-motion';
-import { ContactInfo } from 'grommet-icons';
 import Link from 'next/link';
 import Footer from './Footer';
 
@@ -37,7 +36,8 @@ const Layout: React.FunctionComponent<Props> = (props) => {
           <header id="mainheader" className="container">
             <Link href="/">
               <a>
-                <ContactInfo className="headerlogo" style={{height: "40px", width: "40px" }} />
+                <img src="/da-purple.png" className="headerlogo" style={{height: "40px", width: "40px" }}></img>
+                {/* <ContactInfo className="headerlogo" style={{height: "40px", width: "40px" }} /> */}
               </a>
             </Link>
             <NavMenu></NavMenu>

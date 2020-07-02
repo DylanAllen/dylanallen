@@ -25,8 +25,8 @@ const Noiiice: React.FunctionComponent<{ state: any}>  = () => {
 
   const Comps = {
     "p": {
-      "component": "paragraph",
-      "props": {"fill": 'true'}
+      "component": "Paragraph",
+      "props": {"fill": 'true', style: {fontWeight: '300'}}
     }
   }
 

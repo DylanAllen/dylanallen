@@ -29,7 +29,9 @@ section {
   &.inverted {
     background-color: $text;
     color: $background;
-    @include fullWidth;
     padding: $sectionPadding 0;
+    @media (max-width: $containerPx) {
+      @include fullWidth;
+    }
   }
 }

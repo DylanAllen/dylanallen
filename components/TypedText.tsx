@@ -1,8 +1,6 @@
 import { MutableRefObject, useRef, useEffect, useState } from "react";
 
 const TypedText: React.FunctionComponent<{text: string, className: string}> = ({ text, className }) => {
-  
-  let textArr = text.split(''); 
 
   function useInterval(callback: () => void , delay: number | null) {
     const savedCallback: MutableRefObject<any | null> = useRef<any | null>(null);
@@ -26,22 +24,22 @@ const TypedText: React.FunctionComponent<{text: string, className: string}> = ({
     }, [delay]);
   }
   const [content, setContent] = useState('');
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
   const [interval, updateInterval] = useState<number | null>(50);
 
   useInterval(() => {
-    if (count >= textArr.length - 1) {
+    if (count >= text.length) {
       updateInterval(null);
     } else {
       updateInterval(20 + (Math.random() * 200) );
     }
-    setContent(content + textArr[count])
+    setContent(text.slice(0,count + 1))
     setCount(count + 1);
   }, interval);
 
 
   return (
-    <span className={className}>{content}</span>
+    <span className={className}>{content || '\u00A0'}</span>
   )
 }
 

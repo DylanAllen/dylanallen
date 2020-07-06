@@ -10,7 +10,6 @@ $containerPx: 1200px;
 
 @mixin fullWidth {
   width: 100vw!important;
-  max-width: 100vw;
   margin-left: -15px;
   margin-right: -15px;
   max-width: $containerPx;

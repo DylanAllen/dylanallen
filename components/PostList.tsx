@@ -22,7 +22,12 @@ const PostCard: React.FunctionComponent<{ post: MetaType }> = ({ post }) => {
       <h2 className="post-title" onClick={() => {gotToPost(post.slug)}}>{post.title}</h2>
       <div className="post-card">
         <p className="post-desc">{post.description}</p>   
-        <Picture className="post-image" fbpath={post.image} style={{height: "300px", width: "400px"}} overlayed={true} onClick={() => {gotToPost(post.slug)}}/>   
+        <Picture
+          className="post-image"
+          fbpath={post.image} style={{height: "300px", width: "400px"}}
+          overlayed={true}
+          onClick={() => {gotToPost(post.slug)}}
+        />   
         <div className="post-floater"></div>
         <Link href={`/blog/${post.slug}`}><a className="post-link">View Post</a></Link>
         <div className="clear"></div>
@@ -34,7 +39,7 @@ const PostCard: React.FunctionComponent<{ post: MetaType }> = ({ post }) => {
 const PostList: React.FunctionComponent = () => {
 
   return (
-    <div className="post-list">
+    <div className="post-list style2">
       {posts.map(post => <PostCard post={post} key={post.slug}></PostCard>)}
     </div>
   )

@@ -4,6 +4,35 @@ import PostList from '../components/PostList';
 import TypedText from '../components/TypedText';
 import { useEffect, useState } from 'react';
 
+const techStack = {
+  JavaScript: 6,
+  React: 5,
+  VueJS: 5,
+  Angular: 4,
+  'CSS/SCSS': 5,
+  TypeScript: 5,
+  NodeJS: 4,
+  AWS: 4,
+  Design: 3,
+  DynamoDB: 5,
+  Lambda: 4,
+  CloudFormation: 4,
+  Python: 3,
+  'API Gateway': 3,
+  'Serverless Framework': 4,
+  'Serverless Architecture': 3,
+  FireStore: 3,
+  CloudFront: 3,
+  Cognito: 3,
+  'AWS Lex': 4,
+  Redux: 2
+}
+
+let techArr = [];
+for (const word in techStack) {
+  techArr.push(word);
+}
+
 const IndexPage: NextPage = () => {
 
   const getGreetingTime: () => string = () => {
@@ -43,9 +72,19 @@ const IndexPage: NextPage = () => {
         </p>
       </div>
     </section>
+    <section className="techStack">
+      <h1>Tech stack</h1>
+      <div className="wordGrid">
+        {Object.entries(techStack).map(tech => <span className={'techLevel l' + tech[1]} key={tech[0]}>{tech[0]}</span>)}
+      </div>
+    </section>
     <section id="posts">
       <h1>Latest Posts</h1>
-      <PostList></PostList>
+      <PostList
+        className="style2"
+        imgHeight="220px"
+        imgWidth="300px">
+      </PostList>
     </section>
   </Layout>
 )}

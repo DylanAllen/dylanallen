@@ -42,15 +42,17 @@ const Picture: React.FunctionComponent<Props> = (props) => {
 
 
   return (
-    <div className={`image-container ${props.className} ` + ((animate) ? '' : 'loaded')}
+    <div
+      className={`image-container ${props.className} ` + ((animate) ? '' : 'loaded')}
       style={{...style}}
+      onClick={onClick}
     >
         <div className={"image-div" + ((overlayed) ? ' overlay' : '')}
           style={{ backgroundImage: `url(${url}) ${ (overlayed) ? greyPng : ''}`,
             opacity: opacity
           }}
         ></div>
-        <img src={url} style={{display: 'none'}} onLoad={loaded} onClick={onClick}/>
+        <img src={url} style={{display: 'none'}} onLoad={loaded} />
     </div>
   )
 

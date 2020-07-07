@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { Context } from '../pages/_app';
 import { firestore } from 'firebase';
 import { Trash, CheckboxSelected } from 'grommet-icons';
-import { Heading } from 'grommet';
+import { Heading, Markdown } from 'grommet';
 import Link from 'next/link';
 
 interface CommentType {
@@ -29,7 +29,7 @@ const AdminComments: React.FunctionComponent = () => {
       <div className="comment">
         <div className="username">{comment.displayname}</div>
         <div className="timestamp">{comment.timestamp.toDate().toLocaleDateString()} {comment.timestamp.toDate().toLocaleTimeString()}</div>
-        <div className="message"><p className="messagespan">{comment.message}</p></div>
+        <div className="message"><div className="messagespan"><Markdown>{comment.message}</Markdown></div></div>
         <div className="slug"><Link href={`/blog/${comment.slug}`}><a>{comment.slug}</a></Link></div>
         <div className="status">{comment.status}</div>
       </div>

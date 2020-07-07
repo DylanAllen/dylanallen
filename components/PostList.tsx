@@ -10,7 +10,20 @@ let posts: MetaType[] = [
   Udon
 ]
 
-const PostCard: React.FunctionComponent<{ post: MetaType }> = ({ post }) => {
+interface PostsProps {
+  imgHeight?: string;
+  imgWidth?: string;
+  className?: string;
+}
+
+interface PostProps {
+  post: MetaType;
+  imgHeight?: string;
+  imgWidth?: string;
+  className?: string;
+}
+
+const PostCard: React.FunctionComponent<PostProps> = ({ post, imgHeight, imgWidth }) => {
 
   const router = useRouter();
   const gotToPost = (url: string) => {
@@ -24,7 +37,7 @@ const PostCard: React.FunctionComponent<{ post: MetaType }> = ({ post }) => {
         <p className="post-desc">{post.description}</p>   
         <Picture
           className="post-image"
-          fbpath={post.image} style={{height: "300px", width: "400px"}}
+          fbpath={post.image} style={{height: imgHeight, width: imgWidth}}
           overlayed={true}
           onClick={() => {gotToPost(post.slug)}}
         />   
@@ -36,11 +49,11 @@ const PostCard: React.FunctionComponent<{ post: MetaType }> = ({ post }) => {
   )
 }
 
-const PostList: React.FunctionComponent = () => {
+const PostList: React.FunctionComponent<PostsProps> = ({imgHeight, imgWidth, className}) => {
 
   return (
-    <div className="post-list style2">
-      {posts.map(post => <PostCard post={post} key={post.slug}></PostCard>)}
+    <div className={"post-list " + className}>
+      {posts.map(post => <PostCard post={post} key={post.slug} imgHeight={ (imgHeight) ? imgHeight : "300px" } imgWidth={(imgWidth)? imgWidth : "400px"}></PostCard>)}
     </div>
   )
 }

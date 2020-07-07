@@ -32,4 +32,17 @@ a {
   font-weight: 500;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,300;0,500;1,300;1,500&display=swap');
+$titleFont: 'Source Code Pro', monospace;
+$textFont: 'Roboto', sans-serif;
+
+h1, h2, h3, h4 {
+  font-family: $titleFont;
+}
+
+body {
+  background-color: $background;
+  color: #ffffff;
+  margin: 0;
+  font-family: $textFont;
+  font-size: 20px;
+}

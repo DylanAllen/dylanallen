@@ -56,7 +56,9 @@ const Comment: React.FunctionComponent<{ comments: CommentType[], dbRef: firesto
           <div className="comment">
             <div className="username">{ comment.avatar ? <img src={comment.avatar} className="avatar-sm" /> : ''}<span>{comment.displayname}</span></div>
             <div className="timestamp">{comment.timestamp.toDate().toLocaleDateString()} {comment.timestamp.toDate().toLocaleTimeString()}</div>
-            <div className="message"><p className="messagespan"><Markdown>{comment.message}</Markdown></p></div>
+            <div className="message">
+              <div className="messagespan"><Markdown>{comment.message}</Markdown></div>
+            </div>
           </div>
         </div>)
       }

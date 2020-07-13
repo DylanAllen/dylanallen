@@ -43,7 +43,7 @@ const Layout: React.FunctionComponent<Props> = (props) => {
             </Link>
             <NavMenu></NavMenu>
           </header>
-          <div className="container maincontainer">
+          <div className="maincontainer">
           <motion.div initial="exit" animate="enter" exit="exit">
             <motion.div variants={textVariants}>
               {children}

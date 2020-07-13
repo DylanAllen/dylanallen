@@ -4,10 +4,12 @@ import { MetaType } from '../interfaces';
 import Link from 'next/link';
 import Picture from '../components/Picture';
 import { useRouter } from 'next/router';
+import { meta as NewSite} from '../pages/blog/newsite';
 
 let posts: MetaType[] = [
+  NewSite,
   Noiiice,
-  Udon
+  Udon,
 ]
 
 interface PostsProps {

@@ -60,25 +60,25 @@ const IndexPage: NextPage = () => {
 
   return (
   <Layout>
-    <section id="pageheader">
+    <section id="pageheader" className="container">
       <h1 className="big-heading">Dylan Allen</h1>
       <TypedText className="tagline" text="JavaScript Developer" />
     </section>
     <section className="inverted">
-      <div className="introtext">
+      <div className="introtext container">
         <p>
           Good {greeting}{(visitor) ? ', and welcome back!': ','} I am a <strong>frontend web developer</strong> in <em><a href="https://en.wikipedia.org/wiki/Tulsa,_Oklahoma">Tulsa, OK</a></em>.
-          My faves are React(this site is built with React) and VueJS, but my day job is all Angular lately. I have experience developing lambda functions, and really like serverless architecture. My DB experience is mostly NoSQL (DynamoDB & FireStore).
+          I like to work with React(this site is built with React) and VueJS, but my day job is Angular. I have experience developing lambda functions, and really like serverless architecture. My DB experience is mostly NoSQL (DynamoDB & FireStore).
         </p>
       </div>
     </section>
-    <section className="techStack">
+    <section className="techStack container">
       <h1>Tech stack</h1>
       <div className="wordGrid">
         {Object.entries(techStack).map(tech => <span className={'techLevel l' + tech[1]} key={tech[0]}>{tech[0]}</span>)}
       </div>
     </section>
-    <section id="posts">
+    <section id="posts" className="container">
       <h1>Latest Posts</h1>
       <PostList
         className="style2"

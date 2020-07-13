@@ -51,12 +51,14 @@ const Comps = {
 
 const UdonOne: React.FunctionComponent<{state: any}> = () => (
   <Layout title={`${meta.title}  | Dylan Allen | JavaScript Developer | Frontend Web`}>
-    <h1>{meta.title}</h1>
-    <Picture fbpath={meta.image} style={{width: '100%', height: '45vw', maxHeight: '700px' }}></Picture>
-    <div className="postContainer">
-      <Markdown components={Comps}>{md}</Markdown>
+    <div className="container">
+      <h1>{meta.title}</h1>
+      <Picture fbpath={meta.image} style={{width: '100%', height: '45vw', maxHeight: '700px' }}></Picture>
+      <div className="postContainer">
+        <Markdown components={Comps}>{md}</Markdown>
+      </div>
+      <Comments slug={meta.slug}></Comments>
     </div>
-    <Comments slug={meta.slug}></Comments>
   </Layout>
 )
 

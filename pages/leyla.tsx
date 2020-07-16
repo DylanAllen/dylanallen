@@ -13,6 +13,10 @@ const Leyla: React.FunctionComponent<{state: any }> = () => (
       <p>
         leyla i am 5. and you leyla.mom and dad.
       </p>
+      <h2>Next section</h2>
+      <p>
+        hi my name is leyla mom dad nan pop
+      </p>
   </Layout>
 )
 

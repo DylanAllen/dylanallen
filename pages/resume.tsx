@@ -149,8 +149,26 @@ const Resume: NextPage = () => {
         </div>
         
       </div>
-      
     </section>
+
+    <section className="experience">
+      <h1 className="container">Education</h1>
+      <div className="experience-container">
+        <div className="">
+          <div className="job-block container">
+            <h2 className="job-header">University of Tulsa</h2>
+            <div className="job-title">
+              Bachelor of Science in Business Administration
+            </div>
+            <p className="job-description">
+              Major: Economics<br/>
+              Minor: Finance
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
   </Layout>
 )}
 

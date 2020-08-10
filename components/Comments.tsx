@@ -1,8 +1,10 @@
 import { useContext, useState, useEffect, ChangeEvent } from "react";
 import { Context, StateType } from '../pages/_app';
-import { firestore } from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/firestore';
 import { Heading, TextArea, Button, Markdown, Box } from 'grommet';
 import { Trash } from 'grommet-icons';
+const firestore = firebase.firestore;
 
 interface CommentProps {
   slug: string
@@ -13,7 +15,7 @@ interface CommentType {
   message: string;
   displayname: string;
   status: 'approved' | 'pending' | 'rejected';
-  timestamp: firestore.Timestamp;
+  timestamp: firebase.firestore.Timestamp;
   id: string;
   avatar?: string;
 }
@@ -24,7 +26,7 @@ const NoComment = () => (
   </div>
 )
 
-const deleteComment = async (id: string, ref: firestore.CollectionReference<firestore.DocumentData>) => {
+const deleteComment = async (id: string, ref: firebase.firestore.CollectionReference<firebase.firestore.DocumentData>) => {
   try {
     await ref.doc(id).delete();
   } catch(err) {
@@ -47,7 +49,7 @@ const apiPost = async (payload: any, url: string) => {
 
 }
 
-const Comment: React.FunctionComponent<{ comments: CommentType[], dbRef: firestore.CollectionReference<firestore.DocumentData>, uid: string } > = ({ comments, dbRef, uid }) => {
+const Comment: React.FunctionComponent<{ comments: CommentType[], dbRef: firebase.firestore.CollectionReference<firebase.firestore.DocumentData>, uid: string } > = ({ comments, dbRef, uid }) => {
   return (
     <div>
       {comments.map((comment: any) => 

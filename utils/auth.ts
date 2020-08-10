@@ -1,11 +1,13 @@
-import { auth as firebaseAuth, storage } from 'firebase';
+import * as firebase  from 'firebase/app';
+import { storage } from 'firebase/app'
 import { Subject } from 'rxjs';
+import 'firebase/auth'; 
 
 interface Auth {
     init: () => void;
     login: () => Promise<firebase.User | null>;
     logout: () => Promise<any>;
-    provider: firebaseAuth.GoogleAuthProvider;
+    provider: firebase.auth.GoogleAuthProvider;
     storage: () => storage.Storage;
 }
 
@@ -20,6 +22,8 @@ export const authState = {
   user: null,
   initialized: false,
 }
+
+const firebaseAuth = firebase.auth;
 
 export const auth: Auth = {
     provider: new firebaseAuth.GoogleAuthProvider(),

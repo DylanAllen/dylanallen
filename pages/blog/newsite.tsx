@@ -11,7 +11,7 @@ const NewSite: React.FunctionComponent<{ state: any}>  = () => {
         <Picture fbpath={meta.image} style={{width: '100%', height: '45vw', maxHeight: '700px' }}></Picture>
         <p>
           My old personal site was quite old, and needed a refresh. It was also on a PHP based CMS, and I am intentionally out of the PHP game. So I decided to build a new site from the ground up as an exercise.
-          I recently build a blog platform in Nuxt(Vue) with an all AWS serverless backend, and that was a pretty cool project, so I thought about using that. I decided to go this route so I could get more React experience.
+          I recently built a blog platform in Nuxt(Vue) with an all AWS serverless backend, and that was a pretty cool project, so I thought about using that. I decided to go this route so I could get more React experience.
           I built a few things with React at the last company I worked for, but my day job is 100% Angular right now. I want to make sure I stay up to speed on the tech I like.
         </p>
         <h2>Project deets</h2>

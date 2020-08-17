@@ -1,9 +1,11 @@
 import * as React from 'react'
+import { useEffect } from 'react'
 import Head from 'next/head'
 import NavMenu from './NavMenu'
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Footer from './Footer';
+import { useRouter } from 'next/router';
 
 type Props = {
   children: React.ReactChild[] | React.ReactChild
@@ -24,7 +26,19 @@ const Layout: React.FunctionComponent<Props> = (props) => {
 
   const { children } = props;
   const title = props.title || 'Dylan Allen | JavaScript Developer | Frontend Web | React | Serverless';
+  const router = useRouter();
+  const postGtag = (url: string) => {
+    let win = window as any;
+    win.gtag('config', win.ga_id, {'page_path': url});
+  }
 
+  useEffect(() => {
+    router.events.on('routeChangeStart', postGtag);
+    return () => {
+      router.events.off('routeChangeStart', postGtag);
+    }
+  })
+  
     return (
       <div >
         <Head>

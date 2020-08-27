@@ -35,7 +35,7 @@ const NewSite: React.FunctionComponent<{ state: any}>  = () => {
 export const meta = {
   title: 'This New Site',
   description: 'My old personal site was quite old, and needed a refresh. It was also on a PHP based CMS, and I am intentionally out of the PHP game. So I decided to build a new site from the ground up as an exercise. Tech stack: Next.js(React), TypeScript, Firebase auth, Firestore DB, SCSS, and Vercel SSR hosting.',
-  image:  'images/DylanAllenSite.png',
+  image:  'images/javascriptDev.png',
   slug: 'newsite',
   date: new Date(2020, 5, 3)
 }

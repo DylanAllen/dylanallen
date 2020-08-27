@@ -1,7 +1,6 @@
 import Layout from '../components/Layout'
 import { NextPage } from 'next';
 import PostList from '../components/PostList';
-import TypedText from '../components/TypedText';
 import { useEffect, useState } from 'react';
 
 const IndexPage: NextPage = () => {

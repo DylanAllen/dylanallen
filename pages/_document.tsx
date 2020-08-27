@@ -8,12 +8,13 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="en-US">
         <Head>
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.ga_id}`}
           />
+          <link rel="dns-prefetch" href="https://firebasestorage.googleapis.com" />
 
           <script
             dangerouslySetInnerHTML={{

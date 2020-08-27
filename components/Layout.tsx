@@ -52,7 +52,7 @@ const Layout: React.FunctionComponent<Props> = (props) => {
           <header id="mainheader" className="container">
             <Link href="/">
               <a>
-                <img alt="DA Logo" src="/da-purple.png" className="headerlogo" style={{height: "40px", width: "42.3px" }}></img>
+                <img alt="DA Logo" src="/da-purple.png" className="headerlogo" style={{height: "42.4px", width: "40px" }}></img>
                 {/* <ContactInfo className="headerlogo" style={{height: "40px", width: "40px" }} /> */}
               </a>
             </Link>

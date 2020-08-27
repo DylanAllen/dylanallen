@@ -47,6 +47,9 @@
       background-color: $text;
       color: $background;
       width: 100%;
+      h2, p, span {
+        color: $background;
+      }
     }
     .job-block {
       padding: 30px 15px;

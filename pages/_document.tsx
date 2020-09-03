@@ -3,6 +3,7 @@ import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/do
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx)
+    console.log(process.env.NODE_ENV);
     return { ...initialProps }
   }
 
@@ -10,13 +11,14 @@ class MyDocument extends Document {
     return (
       <Html lang="en-US">
         <Head>
-          <script
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link rel="preconnect" href="https://firebasestorage.googleapis.com" />
+          {(process.env.NODE_ENV !== 'development') && <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.ga_id}`}
-          />
+          />}
           <link rel="dns-prefetch" href="https://firebasestorage.googleapis.com" />
-
-          <script
+          {(process.env.NODE_ENV !== 'development') && <script
             dangerouslySetInnerHTML={{
               __html: `
                     window.dataLayer = window.dataLayer || [];
@@ -26,7 +28,8 @@ class MyDocument extends Document {
                     gtag('config', '${process.env.ga_id}');
                 `,
             }}
-          />
+          />}
+          
         </Head>
         <body>
           <Main />

@@ -1,11 +1,13 @@
-import { auth as firebaseAuth, storage } from 'firebase';
-import { EventEmitter } from 'events';
+import * as firebase  from 'firebase/app';
+import { storage } from 'firebase/app'
+
+import 'firebase/auth'; 
 
 interface Auth {
     init: () => void;
     login: () => Promise<firebase.User | null>;
     logout: () => Promise<any>;
-    provider: firebaseAuth.GoogleAuthProvider;
+    provider: firebase.auth.GoogleAuthProvider;
     storage: () => storage.Storage;
 }
 
@@ -24,6 +26,7 @@ export const userEvent = (user: firebase.User | null) => {
   const event = new CustomEvent('user', { detail: user } )
   window.dispatchEvent(event);
 }
+const firebaseAuth = firebase.auth;
 
 export const auth: Auth = {
     provider: new firebaseAuth.GoogleAuthProvider(),

@@ -47,7 +47,6 @@ export default class MyApp extends App {
       });
     }
     if (!this.state.loaded) {
-      console.log(this.state);
       this.setState({loaded: true});
     }
   }

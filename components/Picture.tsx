@@ -22,7 +22,6 @@ const Picture: React.FunctionComponent<Props> = (props) => {
   if (src) setImg(`url(${src})`);
 
   const loaded = () => {
-    console.log('loaded');
     if (!opacity) {
       setOpacity(1)
       setTimeout(() => {

@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { Context } from '../pages/_app';
-import { firestore } from 'firebase';
+import { firestore } from 'firebase/app';
 import { Trash, CheckboxSelected } from 'grommet-icons';
 import { Heading, Markdown } from 'grommet';
 import Link from 'next/link';

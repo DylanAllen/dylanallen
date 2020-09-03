@@ -34,6 +34,7 @@ Setup a [Firebase Service account](https://firebase.google.com/docs/admin/setup#
 project_id=...
 private_key=-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n
 client_email=...
+ga_id=YOUR_GOOLE_ANALYTICS_ID
 ```
 
 Run locally:

@@ -1,7 +1,6 @@
 import Layout from '../components/Layout'
 import { NextPage } from 'next';
 import PostList from '../components/PostList';
-import TypedText from '../components/TypedText';
 import { useEffect, useState } from 'react';
 
 const IndexPage: NextPage = () => {
@@ -22,18 +21,19 @@ const IndexPage: NextPage = () => {
   }
 
   const [greeting, setGreeting] = useState('');
-  const [visitor, setVisitor] = useState(false);
+  const [visitor, setVisitor] = useState<boolean | null>(null);
 
   useEffect(() => {
     setGreeting(getGreetingTime());
     setVisitor(rememberVisitor());
+
   },[])
 
   return (
   <Layout>
     <section id="pageheader" className="container">
       <h1 className="big-heading">Dylan Allen</h1>
-      <TypedText className="tagline" text="JavaScript Developer" />
+      {(visitor !== null) && <span className="tagline">JavaScript Developer</span> }
     </section>
     <section className="inverted">
       <div className="introtext container">

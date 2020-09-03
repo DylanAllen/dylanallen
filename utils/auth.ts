@@ -23,7 +23,7 @@ export const authState = {
 
 export const userEvent = (user: firebase.User | null) => {
   updateState({user: user});
-  const event = new CustomEvent('user', { detail: user } )
+  const event = new CustomEvent('userUpdate', { detail: user } )
   window.dispatchEvent(event);
 }
 const firebaseAuth = firebase.auth;

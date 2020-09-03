@@ -2,7 +2,7 @@ import '../assets/style.scss';
 import { AnimatePresence } from 'framer-motion';
 import App, { AppProps } from 'next/app'
 import { initApp } from '../utils/firebase';
-import { authState, auth } from '../utils/auth';
+import { auth } from '../utils/auth';
 import React from 'react';
 
 export interface StateType {
@@ -42,8 +42,8 @@ export default class MyApp extends App {
 
   componentDidMount() {
     if (!this.state.user) {
-      window.addEventListener('user', (user) => {
-        this.setState({user: user});
+      window.addEventListener('userUpdate', (user: CustomEventInit) => {
+        this.setState({user: user.detail});
       });
     }
     if (!this.state.loaded) {

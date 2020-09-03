@@ -1,5 +1,5 @@
 import { auth as firebaseAuth, storage } from 'firebase';
-import { Subject } from 'rxjs';
+import { EventEmitter } from 'events';
 
 interface Auth {
     init: () => void;
@@ -10,28 +10,29 @@ interface Auth {
 }
 
 export interface AuthState {
-  user$?: Subject<firebase.User | null>;
   user?: firebase.User | null;
   initialized?: boolean;
 }
 
 export const authState = {
-  user$: new Subject<firebase.User | null>(),
   user: null,
   initialized: false,
+}
+
+export const userEvent = (user: firebase.User | null) => {
+  updateState({user: user});
+  const event = new CustomEvent('user', { detail: user } )
+  window.dispatchEvent(event);
 }
 
 export const auth: Auth = {
     provider: new firebaseAuth.GoogleAuthProvider(),
     init: async () => {
       updateState({initialized: true});
-      authState.user$.subscribe((user: firebase.User | null) => {
-        updateState({user: user});
-      })
       auth.provider.addScope('https://www.googleapis.com/auth/contacts.readonly')
       firebaseAuth().onAuthStateChanged(function(user) {
           if (user) {
-            authState.user$.next(user);
+            userEvent(user);
           }
       });
     },
@@ -40,7 +41,7 @@ export const auth: Auth = {
         if (!authState.user) {
         
             return firebaseAuth().signInWithPopup(auth.provider).then((result) => {           
-                authState.user$.next(result.user);
+                userEvent(result.user);
                 return result.user;
             }).catch(function(error) {
                 console.log(error);
@@ -52,7 +53,7 @@ export const auth: Auth = {
     },
     logout: () => {
       return firebaseAuth().signOut().then(res => {
-        authState.user$.next(null);
+        userEvent(null);
         return res;
       });
     },

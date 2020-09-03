@@ -42,11 +42,9 @@ export default class MyApp extends App {
 
   componentDidMount() {
     if (!this.state.user) {
-      authState.user$.subscribe(user => {
-        if (user != this.state.user) {
-          this.setState({user: user});
-        }
-      })
+      window.addEventListener('user', (user) => {
+        this.setState({user: user});
+      });
     }
     if (!this.state.loaded) {
       console.log(this.state);

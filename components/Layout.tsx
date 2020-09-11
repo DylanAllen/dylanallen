@@ -28,6 +28,7 @@ const Layout: React.FunctionComponent<Props> = (props) => {
   const title = props.title || 'Dylan Allen | JavaScript Developer | Frontend Web | React | Serverless';
   const router = useRouter();
   const postGtag = (url: string) => {
+    if (process.env.NODE_ENV === 'development') return null;
     let win = window as any;
     win.gtag('config', win.ga_id, {'page_path': url});
   }

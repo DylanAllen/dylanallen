@@ -1,6 +1,8 @@
 import Layout from '../components/Layout'
 import { NextPage } from 'next';
 import TypedText from '../components/TypedText';
+import { ReactNode, useState, useEffect, useCallback } from 'react';
+import { Close } from 'grommet-icons';
 
 const techStack = {
   JavaScript: 6,
@@ -11,7 +13,7 @@ const techStack = {
   'CSS/SCSS': 3,
   NodeJS: 4,
   AWS: 4,
-  Design: 3,
+  UX: 3,
   DynamoDB: 5,
   Lambda: 4,
   CloudFormation: 4,
@@ -27,7 +29,46 @@ for (const word in techStack) {
   techArr.push(word);
 }
 
+interface ModalProps {
+  children?: ReactNode;
+  show?: boolean;
+  close: Function
+}
+
+const Modal: React.FunctionComponent<ModalProps> = (props: ModalProps) => {
+  const { show, children, close } = props;
+
+  const ModalContent: React.FunctionComponent<ModalProps> = ({ children, close }) => {
+    const escFunction = useCallback((event) => {
+      if(event.keyCode === 27) {
+        close();
+      }
+    }, []);
+
+    useEffect(() => {
+      document.addEventListener("keydown", escFunction, false);
+      return () => {
+        document.removeEventListener("keydown", escFunction, false);
+      };
+    }, []);
+
+    return (<div className="content">
+      {children} 
+    </div>)
+  }
+  
+  return (<div>
+    {(show == true) && <div className="modal">
+      <Close className="closeModal" onClick={() => close()} color="#ffffff"></Close>
+      {(show === true) && <ModalContent close={close}>{children}</ModalContent>}
+    </div>}
+  </div>)
+}
+
 const Resume: NextPage = () => {
+
+  const [noiiiceModal, setNoiiiceModal] = useState(false);
+  const [lkModal, setLKModal] = useState(false)
 
   return (
   <Layout>
@@ -47,6 +88,39 @@ const Resume: NextPage = () => {
       <h1>Tech</h1>
       <div className="wordGrid">
         {Object.entries(techStack).map(tech => <span className={'techLevel l' + tech[1]} key={tech[0]}>{tech[0]}</span>)}
+      </div>
+    </section>
+    <section className="projects inverted">
+      <div className="container">
+        <h1>Projects</h1>
+        <div className="project">
+          <h2>Noiiice</h2>
+          <p>
+            Noiiice is an open source blog platform built with the Serverless framework, NuxtJS, AWS Lambda, DynamoDB, API Gateway, S3, and Cognito. The serverless architecture provides fast performance, virtually infinite scalability, and very cheap to operate.
+          </p>
+          <button className="projectButton" onClick={() => setNoiiiceModal(true)}>Demo Video</button>
+          <Modal show={noiiiceModal} close={() => setNoiiiceModal(false)}>
+            <div className="videoContainer">
+              <iframe src="https://player.vimeo.com/video/362037476" className="videoFrame" allow="autoplay; fullscreen"></iframe>
+            </div>
+          </Modal>
+        </div>
+        <div className="project">
+          <h2>Lexi's Kitchen</h2>
+          <p>
+            Some time ago we had a problem using perishable food before it expired. That gave me the idea for an alexa skill that we could use to add perishable items and their expiration date, and easily check what is expiring next without digging through the fridge. And so I built Lexi's Kitchen.
+          </p>
+          <p>A skill alone wasn't good enough, so I built a companion web app with account linking so I can manage the list from my phone while I am shopping.</p>
+          <button className="projectButton" onClick={() => setLKModal(true)}>Demo Video</button>
+          <Modal show={lkModal} close={() => setLKModal(false)}>
+            <div className="videoContainer">
+              <iframe src="https://player.vimeo.com/video/456787498" className="videoFrame" allow="autoplay; fullscreen"></iframe>
+            </div>
+          </Modal>
+        </div>
+        <div className="project">
+          <h2>Udon</h2>
+        </div>
       </div>
     </section>
     <section className="experience">

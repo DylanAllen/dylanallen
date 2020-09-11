@@ -42,7 +42,7 @@ section {
     color: $background;
     padding: $sectionPadding 0;
     width: 100%;
-    p {
+    p, h1, h2, h3 {
       color: $background;
     }
     a {

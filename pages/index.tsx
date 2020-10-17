@@ -33,13 +33,13 @@ const IndexPage: NextPage = () => {
   <Layout>
     <section id="pageheader" className="container">
       <h1 className="big-heading">Dylan Allen</h1>
-      {(visitor !== null) && <span className="tagline">JavaScript Developer</span> }
+      {(visitor !== null) && <span className="tagline">JavaScript Engineer</span> }
     </section>
     <section className="inverted">
       <div className="introtext container">
         <p>
           Good {greeting}{(visitor) ? ', and welcome back!': ','} I am a <strong>frontend web developer</strong> in <em><a href="https://en.wikipedia.org/wiki/Tulsa,_Oklahoma">Tulsa, OK</a></em>.
-          I like to work with React(this site is built with React) and VueJS, but my day job is Angular. I have experience developing lambda functions, and really like serverless architecture. My DB experience is mostly NoSQL (DynamoDB & FireStore).
+          I like to work with React, VueJS, and TypeScript. I have experience developing lambda functions, and really like serverless architecture. My DB experience is mostly NoSQL (DynamoDB & FireStore).
         </p>
       </div>
     </section>

@@ -4,12 +4,14 @@ import { MetaType } from '../interfaces';
 import Link from 'next/link';
 import Picture from '../components/Picture';
 import { useRouter } from 'next/router';
-import { meta as NewSite} from '../pages/blog/newsite';
+import { meta as NewSite } from '../pages/blog/newsite';
+import { meta as Moov } from '../pages/blog/moov';
 
 let posts: MetaType[] = [
+  Moov,
   NewSite,
   Noiiice,
-  Udon,
+  Udon
 ]
 
 interface PostsProps {

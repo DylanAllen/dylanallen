@@ -25,7 +25,7 @@ const textVariants = {
 const Layout: React.FunctionComponent<Props> = (props) => {
 
   const { children } = props;
-  const title = props.title || 'Dylan Allen | JavaScript Developer | Frontend Web | React | Serverless';
+  const title = props.title || 'Dylan Allen | JavaScript Engineer | Frontend Web | React | Serverless';
   const router = useRouter();
   const postGtag = (url: string) => {
     if (process.env.NODE_ENV === 'development') return null;

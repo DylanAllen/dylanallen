@@ -33,13 +33,13 @@ const Resume: NextPage = () => {
   <Layout>
     <section id="pageheader" className="container">
       <h1 className="big-heading">Dylan Allen</h1>
-      <TypedText className="tagline" text="JavaScript Developer" />
+      <TypedText className="tagline" text="JavaScript Engineer" />
     </section>
     <section className="inverted">
       <div className="introtext container">
         <p>
           I am a <strong>frontend web developer</strong> in <em><a href="https://en.wikipedia.org/wiki/Tulsa,_Oklahoma">Tulsa, OK</a></em>.
-          I like to work with React(this site is built with React) and VueJS, but my day job is Angular. I have experience developing lambda functions, and really like serverless architecture. My DB experience is mostly NoSQL (DynamoDB & FireStore).
+          I like to work with React, VueJS, and TypeScript. I have experience developing lambda functions, and really like serverless architecture. My DB experience is mostly NoSQL (DynamoDB & FireStore).
         </p>
       </div>
     </section>
@@ -53,10 +53,24 @@ const Resume: NextPage = () => {
       <h1 className="container">Experience</h1>
       <div className="experience-container">
 
-        <div className="">
+      <div className="">
           <div className="job-block container">
             <h2 className="job-header">
-              BOK Financial<span className="title-sep"> | </span><span className="duration">Mar 2020 - Present</span>
+              <a href="https://moov.io">Moov Financial</a><span className="title-sep"> | </span><span className="duration">Oct 2020 - Present</span>
+            </h2>
+            <div className="job-title">
+              Senior Frontend Engineer
+            </div>
+            <p className="job-description">
+              Frontend development (React/TS) for a very exciting startup!
+            </p>
+          </div>
+        </div>
+
+        <div className="inverted">
+          <div className="job-block container">
+            <h2 className="job-header">
+              BOK Financial<span className="title-sep"> | </span><span className="duration">Mar 2020 - Oct 2020</span>
             </h2>
             <div className="job-title">
               Software Developer III, VP
@@ -67,7 +81,7 @@ const Resume: NextPage = () => {
           </div>
         </div>
 
-        <div className="inverted">
+        <div className="">
           <div className="job-block container">
             <h2 className="job-header">
               VoiceFoundry<span className="title-sep"> | </span><span className="duration">Nov 2018 - Mar 2020</span>
@@ -84,7 +98,7 @@ const Resume: NextPage = () => {
           </div>
         </div>
 
-        <div className="">
+        <div className="inverted">
           <div className="job-block container">
             <h2 className="job-header">
               Hampton Creative<span className="title-sep"> | </span><span className="duration">Feb 2017 - Nov 2018</span>
@@ -102,7 +116,7 @@ const Resume: NextPage = () => {
           </div>
         </div>
 
-        <div className="inverted">
+        <div className="">
           <div className="job-block container">
             <h2 className="job-header">
               Webco Industries<span className="title-sep"> | </span><span className="duration">May 2016 - Feb 2017</span>
@@ -122,7 +136,7 @@ const Resume: NextPage = () => {
           </div>
         </div>
 
-        <div className="">
+        <div className="inverted">
           <div className="job-block container">
             <h2 className="job-header">
               Baker Hughes<span className="title-sep"> | </span><span className="duration">Feb 2011 - Nov 2015</span>

@@ -4,22 +4,27 @@ import App, { AppProps } from 'next/app'
 import { initApp } from '../utils/firebase';
 import { auth } from '../utils/auth';
 import React from 'react';
+import Toast from '../components/Toast';
 
 export interface StateType {
   user?: firebase.User | null;
   updateState: (state: StateFragment) => void;
   loaded?: boolean;
+  toastMessage?: string;
+  toastColor?: string;
 }
 
 export interface StateFragment {
   user?: firebase.User | null;
   updateState?: (state: StateType) => void;
   loaded?: boolean;
+  toastMessage?: string;
+  toastColor?: string;
 }
 
 const initialState: StateType = {
   user: null,
-  updateState: (state: StateFragment) => console.log(state),
+  updateState: () => {},
   loaded: false
 }
 
@@ -31,7 +36,9 @@ export default class MyApp extends App {
     user: null,
     updateState: (state: StateFragment) => {
       this.setState(state);
-    }
+    },
+    toastMessage: '',
+    toastColor: ''
   }
 
   constructor(props: AppProps) {
@@ -54,12 +61,14 @@ export default class MyApp extends App {
   render() {
     const { Component, pageProps, router } = this.props;
     return (
+      <>
         <AnimatePresence exitBeforeEnter>
           <Context.Provider value={this.state}>
             <Component {...pageProps} key={router.route} />
           </Context.Provider>
         </AnimatePresence>
+      <Toast message={this.state.toastMessage} color={this.state.toastColor}/>
+      </>
     )
   }
 }
-

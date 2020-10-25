@@ -95,10 +95,11 @@ const AdminComments: React.FunctionComponent = () => {
       const post = await apiPost(payload, '/api/comments/approve');
       const res = await post.json()
       if (post.status === 200) {
-        console.log('approved');
+        state.updateState({toastMessage: 'Comment approved.'})
         update(trigger + 1);
       } else {
         alert(res.message);
+        state.updateState({toastMessage: res.message})
       } 
     } else {
       alert('User not found');
@@ -116,10 +117,11 @@ const AdminComments: React.FunctionComponent = () => {
       const post = await apiPost(payload, '/api/comments/delete');
       const res = await post.json()
       if (post.status === 200) {
-        console.log('deleted');
+        state.updateState({toastMessage: 'Comment deleted.'})
         update(trigger + 1);
       } else {
         alert(res.message)
+        state.updateState({toastMessage: res.message, toastColor: 'red'})
       } 
     } else {
       alert('User not found');

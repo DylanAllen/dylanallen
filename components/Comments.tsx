@@ -94,6 +94,7 @@ const CommentForm: React.FunctionComponent<{state: StateType, slug: string}> = (
       const post = await apiPost(payload, '/api/comments/post');
       const res = await post.json()
       if (res.message == 'Post submitted') {
+        state.updateState({toastMessage: "Post submitted for admin approval"})
         setMessage('');
       } else {
         alert(res.message)
@@ -139,7 +140,6 @@ const Comments: React.FunctionComponent<CommentProps> = ({ slug }) => {
       });
       if (data) {
         updateComments(data);
-        console.log('comments updated');
       }
     })   
 

@@ -22,7 +22,6 @@ const AdminPage: React.FunctionComponent<{state: any }> = () => {
     const ref = firestore().collection('users').doc(state.user.uid).get();
     ref.then(doc => {
       let data = doc.data();
-      console.log(data);
       if (data && data.admin === true) {
         setAuth(true);
       }

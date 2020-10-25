@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Footer from './Footer';
 import { useRouter } from 'next/router';
-import { getImage } from '../utils/firebase';
 
 type Props = {
   children: React.ReactChild[] | React.ReactChild

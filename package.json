@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@types/firebase": "^3.2.1",
+    "aws-sdk": "^2.778.0",
     "firebase": "^7.24.0",
     "firebase-admin": "^9.3.0",
     "framer-motion": "^1.11.0",

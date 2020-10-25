@@ -42,11 +42,6 @@ const Layout: React.FunctionComponent<Props> = (props) => {
       router.events.off('routeChangeStart', postGtag);
     }
   })
-
-  useEffect(() => {
-    let cancel = false;
-    return () => {cancel = true};
-  })
   
     return (
       <div >

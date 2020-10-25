@@ -71,44 +71,54 @@ const Comment: React.FunctionComponent<{ comments: CommentType[], dbRef: firebas
 const CommentForm: React.FunctionComponent<{state: StateType, slug: string}> = ({state, slug}) => {
 
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
   }
 
   const addComment = (event: any) => {
     event.preventDefault();
-    postComment(message);
+    setLoading(true);
+    postComment(message).then(() => {
+      setLoading(false);
+    });
   }
 
-  const postComment = async (message: string) => {
-    if (state.user) {
-      const payload = {
-        slug: slug,
-        message: message,
-        displayname: state.user.displayName,
-        userid: state.user.uid,
-        token: await state.user.getIdToken(),
-        avatar: state.user.photoURL
-      }
-
-      const post = await apiPost(payload, '/api/comments/post');
-      const res = await post.json()
-      if (res.message == 'Post submitted') {
-        state.updateState({toastMessage: "Post submitted for admin approval"})
-        setMessage('');
+  const postComment = (message: string) => {
+    return new Promise(async (resolve) => {
+      if (state.user) {
+        const payload = {
+          slug: slug,
+          message: message,
+          displayname: state.user.displayName,
+          userid: state.user.uid,
+          token: await state.user.getIdToken(),
+          avatar: state.user.photoURL
+        }
+  
+        const post = await apiPost(payload, '/api/comments/post');
+        const res = await post.json()
+        if (res.message == 'Post submitted') {
+          state.updateState({toastMessage: "Post submitted for admin approval"})
+          setMessage('');
+          resolve();
+        } else {
+          alert(res.message)
+          resolve()
+        } 
       } else {
-        alert(res.message)
-      } 
-    } else {
-      alert('User not found');
-    }   
+        alert('User not found');
+        resolve();
+      }   
+    })
+    
   }
 
   return (
     <div>
       <form onSubmit={addComment}>
           <TextArea value={message} onChange={handleInputChange} ></TextArea>
-          <Button primary onClick={addComment} label="Post Comment" />
+          <Button primary onClick={addComment} disabled={loading} label={(loading) ? "Posting..." : "Post Comment"} />
           <Box>
             <Heading level={4}>Comment preview</Heading>
             <Markdown>{message}</Markdown>

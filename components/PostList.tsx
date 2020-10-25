@@ -41,7 +41,7 @@ const PostCard: React.FunctionComponent<PostProps> = ({ post, imgHeight, imgWidt
         <p className="post-desc">{post.description}</p>   
         <Picture
           className="post-image"
-          fbpath={post.image} style={{height: imgHeight, width: imgWidth}}
+          src={post.image} style={{height: imgHeight, width: imgWidth}}
           overlayed={true}
           onClick={() => {gotToPost(post.slug)}}
         />   

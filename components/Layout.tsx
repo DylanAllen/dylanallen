@@ -27,11 +27,10 @@ const textVariants = {
 
 const Layout: React.FunctionComponent<Props> = (props) => {
 
-  const { children } = props;
+  const { children, image } = props;
   const title = props.title || 'Dylan Allen | JavaScript Engineer | Frontend Web | React | Serverless';
   const description = props.description || "I am a frontend web developer in Tulsa, OK. I like to work with React, VueJS, and TypeScript. I have experience developing lambda functions, and really like serverless architecture. My DB experience is mostly NoSQL (DynamoDB & FireStore).";
   const router = useRouter();
-  const [image, setImage] = React.useState('');
   const postGtag = (url: string) => {
     if (process.env.NODE_ENV === 'development') return null;
     let win = window as any;
@@ -47,11 +46,6 @@ const Layout: React.FunctionComponent<Props> = (props) => {
 
   useEffect(() => {
     let cancel = false;
-    if (props.image) {
-      getImage(props.image).then(img => {
-        if (!cancel) setImage(img);
-      })
-    }
     return () => {cancel = true};
   })
   
@@ -62,7 +56,6 @@ const Layout: React.FunctionComponent<Props> = (props) => {
           <meta charSet="utf-8" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <meta name="description" content={description} />
-          <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,500&family=Source+Code+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet"></link>
           { image && <meta property="og:image" content={image}></meta>  }
           { image && <meta property="twitter:image" content={image}></meta> }
           <meta property="og:title" content={title}></meta>

@@ -10,7 +10,7 @@ const NewSite: React.FunctionComponent<{ state: any }> =  () => {
     <Layout title={`${meta.title} | Dylan Allen | JavaScript Developer | Frontend Web`} image={meta.image} description={meta.description}>
       <div className="container">
         <h1>{meta.title}</h1>
-        <Picture fbpath={meta.image} style={{width: '100%', height: '45vw', maxHeight: '700px' }}></Picture>
+        <Picture src={meta.image} style={{width: '100%', height: '45vw', maxHeight: '700px' }}></Picture>
         <p>
          On October 5th 2020, I started at <Link href="https://moov.io">Moov Financial</Link> as a senior frontend engineer. I am so excited to be a part of what we are building! 
         </p>
@@ -39,7 +39,7 @@ const NewSite: React.FunctionComponent<{ state: any }> =  () => {
 export const meta = {
   title: 'Moov Financial',
   description: 'On October 5th 2020, I started at Moov Financial as a senior frontend engineer. Moov started as an open source project for NACHA file creation and validation for ACH. I love being part of a company that is contributing to the open source community, and building amazing banking software',
-  image:  'images/moov-banner.jpg',
+  image:  '/moov-banner.jpg',
   slug: 'moov',
   date: new Date(2020, 10, 17)
 }

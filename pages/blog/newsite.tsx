@@ -8,7 +8,7 @@ const NewSite: React.FunctionComponent<{ state: any}>  = () => {
     <Layout title={`${meta.title} | Dylan Allen | JavaScript Developer | Frontend Web`} image={meta.image} description={meta.description}>
       <div className="container">
         <h1>{meta.title}</h1>
-        <Picture fbpath={meta.image} style={{width: '100%', height: '45vw', maxHeight: '700px' }}></Picture>
+        <Picture src={meta.image} style={{width: '100%', height: '45vw', maxHeight: '700px' }}></Picture>
         <p>
           My old personal site was quite old, and needed a refresh. It was also on a PHP based CMS, and I am intentionally out of the PHP game. So I decided to build a new site from the ground up as an exercise.
           I recently built a blog platform in Nuxt(Vue) with an all AWS serverless backend, and that was a pretty cool project, so I thought about using that. I decided to go this route so I could get more React experience.
@@ -35,7 +35,7 @@ const NewSite: React.FunctionComponent<{ state: any}>  = () => {
 export const meta = {
   title: 'This New Site',
   description: 'My old personal site was quite old, and needed a refresh. It was also on a PHP based CMS, and I am intentionally out of the PHP game. So I decided to build a new site from the ground up as an exercise. Tech stack: Next.js(React), TypeScript, Firebase auth, Firestore DB, SCSS, and Vercel SSR hosting.',
-  image:  'images/javascriptDev.png',
+  image:  '/javascriptDev.png',
   slug: 'newsite',
   date: new Date(2020, 5, 3)
 }

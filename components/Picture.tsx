@@ -19,8 +19,6 @@ const Picture: React.FunctionComponent<Props> = (props) => {
   const [opacity, setOpacity] = useState(0);
   const [animate, setAnimate] = useState(true);
 
-  if (src) setImg(`url(${src})`);
-
   const loaded = () => {
     if (!opacity) {
       setOpacity(1)
@@ -32,7 +30,9 @@ const Picture: React.FunctionComponent<Props> = (props) => {
 
   useEffect(() => {
     (async () => {
-      if (fbpath) {
+      if (src) {
+        setImg(`${src}`);
+      } else if (fbpath) {
         const img = await getImage(fbpath);
         setImg(img);
       }

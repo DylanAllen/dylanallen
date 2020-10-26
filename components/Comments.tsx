@@ -72,6 +72,7 @@ const CommentForm: React.FunctionComponent<{state: StateType, slug: string}> = (
 
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const { toast } = useContext(Context)
   const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
   }
@@ -99,7 +100,7 @@ const CommentForm: React.FunctionComponent<{state: StateType, slug: string}> = (
         const post = await apiPost(payload, '/api/comments/post');
         const res = await post.json()
         if (res.message == 'Post submitted') {
-          state.updateState({toastMessage: "Post submitted for admin approval"})
+          toast("Post submitted for admin approval")
           setMessage('');
           resolve();
         } else {

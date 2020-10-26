@@ -4,28 +4,31 @@ import App, { AppProps } from 'next/app'
 import { initApp } from '../utils/firebase';
 import { auth } from '../utils/auth';
 import React from 'react';
-import Toast from '../components/Toast';
+import Toaster, { ToastInput, ToastStatusType } from '../components/Toast';
+import "./prism.css";
 
 export interface StateType {
   user?: firebase.User | null;
   updateState: (state: StateFragment) => void;
   loaded?: boolean;
-  toastMessage?: string;
-  toastColor?: string;
+  toast: (message: string, status?: ToastStatusType) => void
+  toastValue: ToastInput;
 }
 
 export interface StateFragment {
   user?: firebase.User | null;
   updateState?: (state: StateType) => void;
   loaded?: boolean;
-  toastMessage?: string;
-  toastColor?: string;
+  toast?: (message: string, status?: ToastStatusType) => void;
+  toastValue?: ToastInput;
 }
 
 const initialState: StateType = {
   user: null,
   updateState: () => {},
-  loaded: false
+  loaded: false,
+  toast: (message) => {console.log(message)},
+  toastValue: {message: ''}
 }
 
 export const Context: React.Context<StateType> = React.createContext(initialState)
@@ -37,8 +40,15 @@ export default class MyApp extends App {
     updateState: (state: StateFragment) => {
       this.setState(state);
     },
-    toastMessage: '',
-    toastColor: ''
+    toast: (message: string, status?: ToastStatusType) => {
+      this.setState({
+        toastValue: {
+          message: message,
+          status: (status) ? status : undefined
+        }
+      })
+    },
+    toastValue: {message: ''}
   }
 
   constructor(props: AppProps) {
@@ -67,7 +77,7 @@ export default class MyApp extends App {
             <Component {...pageProps} key={router.route} />
           </Context.Provider>
         </AnimatePresence>
-      <Toast message={this.state.toastMessage} color={this.state.toastColor}/>
+      <Toaster toastInput={this.state.toastValue}/>
       </>
     )
   }

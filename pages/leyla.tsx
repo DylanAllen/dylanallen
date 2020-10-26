@@ -10,12 +10,18 @@ const Leyla: React.FunctionComponent<{state: any }> = () => (
       <p>
         Leyla Rose Allen and you. Dad where are you? Let the world come to you.
       </p>
-      <p>
+      <p>leyla.........................................................nnnaaaaaaaaaaaaannnnnnnnnnnnnnnnnnnnn....................................................................................................................pppppppp
         leyla i am 5. and you leyla.mom and dad.
       </p>
       <h2>Next section</h2>
       <p>
         hi my name is leyla mom dad nan pop
+      </p> 
+      <p>
+        leyla.mom.dad.roro.nan.pop.
+      </p>
+      <p>
+        hi.nan.i love you.leyla
       </p>
     </div>
   </Layout>

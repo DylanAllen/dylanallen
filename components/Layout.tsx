@@ -50,8 +50,8 @@ const Layout: React.FunctionComponent<Props> = (props) => {
           <meta charSet="utf-8" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <meta name="description" content={description} />
-          { image && <meta property="og:image" content={image}></meta>  }
-          { image && <meta property="twitter:image" content={image}></meta> }
+          { image && <meta property="og:image" content={`https://www.dylanallen.net${image}`}></meta>  }
+          { image && <meta property="twitter:image" content={`https://www.dylanallen.net${image}`}></meta> }
           <meta property="og:title" content={title}></meta>
           { props.description && <meta property="og:description" content={props.description}></meta> }
         </Head>

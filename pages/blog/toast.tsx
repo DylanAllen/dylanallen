@@ -122,7 +122,7 @@ const Toast: React.FunctionComponent = () => {
         </p>
         <h2>The Toast Component</h2>
         <p>I split this into two components. There is the Toast, which is the visual element that handles it's fade in, fade out, and removal timing. 
-          That component is used inside a Toaster component (see whsat i did there) which handles the state of each toast message and supplies the function for removing a ,essage to the Toast component. 
+          That component is used inside a Toaster component (see what I did there) which handles the state of each toast message and supplies the function for removing a message to the Toast component. 
           So lets dig in, here is the code for the toast component.</p>
         <pre>
           <code className="language-javascript">
@@ -130,13 +130,13 @@ const Toast: React.FunctionComponent = () => {
           </code>
         </pre>
         <p>
-          Pretty simple expect for the unforunately deep nesting of setTimeouts in the <code>useEffect</code> hook. I don't like it, and there is probably a better way to do it, but this works. 
+          Pretty simple except for the unfortunately deep nesting of setTimeouts in the <code>useEffect</code> hook. I don't like it, and there is probably a better way to do it, but this works. 
           This nest allows the animations to be ahndled by CSS. We create the element, then update the class to present the message, wait 5 seconds, chage the class to trigger the fade out transition, 
           then call the <code>kill</code> function that is provided by the Toaster parent component to remove the message from the DOM.
         </p>
         <h2>The Toaster Component</h2>
         <p>
-          There is quite a bit more going on here to handle state for the messages and make sure that we can handle multiple message fired at different times from different sources and stay consistent.
+          There is quite a bit more going on here to handle state for the messages and make sure that we can handle multiple messages fired at different times from different sources and stay consistent.
         </p>
         <pre>
           <code className="language-javascript">

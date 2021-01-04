@@ -2,12 +2,13 @@ import { useState, useEffect, CSSProperties } from "react";
 import { getImage } from "../utils/firebase";
 
 interface Props {
-  src?: string,
-  fbpath?: string,
-  style?: CSSProperties,
-  className?: string,
-  overlayed?: boolean,
-  onClick?: () => void
+  src?: string;
+  fbpath?: string;
+  style?: CSSProperties;
+  className?: string;
+  overlayed?: boolean;
+  onClick?: () => void;
+  caption?: React.ReactNode;
 }
 
 const greyPng = `, url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAQAAAAnOwc2AAAAEUlEQVR42mNMO8OAARiHsiAAVkoL/1ec1jIAAAAASUVORK5CYII=)`
@@ -42,18 +43,26 @@ const Picture: React.FunctionComponent<Props> = (props) => {
 
   return (
     <div
-      className={`image-container ${props.className} ` + ((animate) ? '' : 'loaded')}
-      style={{...style}}
+      className={
+        `image-container ${props.className} ` + (animate ? "" : "loaded")
+      }
+      style={{ ...style }}
       onClick={onClick}
     >
-        <div className={"image-div" + ((overlayed) ? ' overlay' : '')}
-          style={{ backgroundImage: `url(${url}) ${ (overlayed) ? greyPng : ''}`,
-            opacity: opacity
-          }}
-        ></div>
-        <img src={url} style={{display: 'none'}} onLoad={loaded} />
+      <div
+        className={"image-div" + (overlayed ? " overlay" : "")}
+        style={{
+          backgroundImage: `url(${url}) ${overlayed ? greyPng : ""}`,
+          opacity: opacity,
+        }}
+      >
+        <figure>
+          <img src={url} style={{ display: "none" }} onLoad={loaded} />
+          {props.caption ? <figcaption>{props.caption}</figcaption> : ""}
+        </figure>
+      </div>
     </div>
-  )
+  );
 
 }
 

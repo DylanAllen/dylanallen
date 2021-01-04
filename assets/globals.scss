@@ -52,3 +52,31 @@ body {
   font-family: $textFont;
   font-size: 20px;
 }
+
+ul {
+  list-style: none;
+  padding-left: 10px;
+  li {
+    &:before {
+      content: "\002D";
+      padding-right: 7px;
+      opacity: 0.5;
+    }
+  }
+}
+
+ol {
+  padding-left: 35px;
+  li {
+    &::marker {
+      opacity: 0.5;
+      font-size: 18px;
+      font-style: italic;
+    }
+  }
+}
+
+li {
+  font-weight: 300;
+  margin-bottom: 7px;
+}

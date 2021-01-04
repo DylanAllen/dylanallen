@@ -63,10 +63,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           status: 'approved'
         }).catch(err => {
           res.status(501).json({ message: "Approval failed due to error", err: err})
-          resolve();
+          resolve(null);
         }).then(() => {
           res.status(200).json({ message: "Post approved" })
-          resolve();
+          resolve(null);
         })
     })
 

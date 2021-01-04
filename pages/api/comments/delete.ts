@@ -60,10 +60,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       ref
         .delete().catch(err => {
           res.status(501).json({ message: "Delete failed due to error", err: err})
-          resolve();
+          resolve(null);
         }).then(() => {
           res.status(200).json({ message: "Post deleted" })
-          resolve();
+          resolve(null);
         })
     })
 

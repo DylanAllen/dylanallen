@@ -34,6 +34,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const db = admin.firestore();
+  const document = await db.collection('comments')
+    .doc(slug).get();
+
+  if (!document.data()) {
+    await db.collection('comments')
+      .doc(slug).create({});
+  }
+
   const ref = db.collection('comments')
     .doc(slug)
     .collection('comments')
@@ -111,10 +119,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         await email;
         if ((await post).status == '200') {
           res.status(200).json({ message: "Post submitted" })
-          resolve()
+          resolve(null)
         } else {
           res.status(501).json({ message: "Post failed due to error", err: (await post).resp})
-          resolve();
+          resolve(null);
         }
       })
   } else {

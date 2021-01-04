@@ -102,14 +102,14 @@ const CommentForm: React.FunctionComponent<{state: StateType, slug: string}> = (
         if (res.message == 'Post submitted') {
           toast("Post submitted for admin approval")
           setMessage('');
-          resolve();
+          resolve(null);
         } else {
           alert(res.message)
-          resolve()
+          resolve(null)
         } 
       } else {
         alert('User not found');
-        resolve();
+        resolve(null);
       }   
     })
     

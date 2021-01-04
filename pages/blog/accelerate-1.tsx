@@ -189,7 +189,7 @@ const Accelerate: React.FunctionComponent<{ state: any }> =  () => {
 
 export const meta = {
   title: 'Accelerate - Continuous Delivery',
-  description: '',
+  description: `This book is based on solid data and research collected over 4 years, not just someone's experience and opinion. Even with the stats and research on prominent display, the book is easy to read. The analysis and conclusions are clearly presented and organized.`,
   image:  '/accelerate.jpg',
   slug: 'accelerate-1',
   date: new Date(2021, 1, 3)

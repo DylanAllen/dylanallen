@@ -62,7 +62,7 @@ const BookReviews: React.FunctionComponent<{ state: any }> =  () => {
 
 export const meta = {
   title: 'Book Reviews',
-  description: 'I started at Moov Financial in October with not a whole lot of fintech experience, and no startup experience. I wanted to close my knowledge gap fast, so I have been on a reading rampage ever since.',
+  description: 'I started at Moov Financial in October with not a whole lot of fintech experience, and no startup experience. I wanted to close my knowledge gap fast, so I have been on a reading rampage ever since. The next few posts will be my thoughts on some of these books.',
   image:  '/karolina-grabowska-books.jpg',
   slug: 'book-reviews',
   date: new Date(2021, 1, 2)

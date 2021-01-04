@@ -7,13 +7,17 @@ import { useRouter } from 'next/router';
 import { meta as NewSite } from '../pages/blog/newsite';
 import { meta as Moov } from '../pages/blog/moov';
 import { meta as Toast } from '../pages/blog/toast';
+import { meta as BookReviews } from '../pages/blog/book-reviews';
+import {meta as Accelerate1} from '../pages/blog/accelerate-1';
 
 let posts: MetaType[] = [
+  Accelerate1,
+  BookReviews,
   Toast,
   Moov,
   NewSite,
   Noiiice,
-  Udon,
+  Udon
 ]
 
 interface PostsProps {

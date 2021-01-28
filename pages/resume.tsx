@@ -38,7 +38,7 @@ const Resume: NextPage = () => {
     <section className="inverted">
       <div className="introtext container">
         <p>
-          I am a <strong>frontend web developer</strong> in <em><a href="https://en.wikipedia.org/wiki/Tulsa,_Oklahoma">Tulsa, OK</a></em>.
+          I am a <strong>frontend web developer/team lead</strong> in <em><a href="https://en.wikipedia.org/wiki/Tulsa,_Oklahoma">Tulsa, OK</a></em>.
           I like to work with React, VueJS, and TypeScript. I have experience developing lambda functions, and really like serverless architecture. My DB experience is mostly NoSQL (DynamoDB & FireStore).
         </p>
       </div>
@@ -59,10 +59,10 @@ const Resume: NextPage = () => {
               <a href="https://moov.io">Moov Financial</a><span className="title-sep"> | </span><span className="duration">Oct 2020 - Present</span>
             </h2>
             <div className="job-title">
-              Senior Frontend Engineer
+                Team Lead - Payments
             </div>
             <p className="job-description">
-              Frontend development (React/TS) for a very exciting startup!
+              Lead an engineering team that is responsible for our core payment services
             </p>
           </div>
         </div>

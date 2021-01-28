@@ -38,7 +38,7 @@ const IndexPage: NextPage = () => {
     <section className="inverted">
       <div className="introtext container">
         <p>
-          Good {greeting}{(visitor) ? ', and welcome back!': ','} I am a <strong>frontend web developer</strong> in <em><a href="https://en.wikipedia.org/wiki/Tulsa,_Oklahoma">Tulsa, OK</a></em>.
+          Good {greeting}{(visitor) ? ', and welcome back!': ','} I am a <strong>frontend web developer/team lead</strong> in <em><a href="https://en.wikipedia.org/wiki/Tulsa,_Oklahoma">Tulsa, OK</a></em>.
           I like to work with React, VueJS, and TypeScript. I have experience developing lambda functions, and really like serverless architecture. My DB experience is mostly NoSQL (DynamoDB & FireStore).
         </p>
       </div>

@@ -9,6 +9,29 @@ import { meta as Moov } from '../pages/blog/moov';
 import { meta as Toast } from '../pages/blog/toast';
 import { meta as BookReviews } from '../pages/blog/book-reviews';
 import {meta as Accelerate1} from '../pages/blog/accelerate-1';
+import { motion } from 'framer-motion';
+
+const list = {
+  visible: {
+    opacity: 1,
+    transition: {
+      when: "beforeChildren",
+      staggerChildren: 0.3,
+    },
+  },
+  hidden: {
+    opacity: 0,
+    transition: {
+      when: "afterChildren",
+    },
+  },
+}
+
+const item = {
+  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 20 },
+}
+
 
 let posts: MetaType[] = [
   Accelerate1,
@@ -41,7 +64,10 @@ const PostCard: React.FunctionComponent<PostProps> = ({ post, imgHeight, imgWidt
   }
 
   return (
-    <article className="post-summary">
+    <motion.article
+      variants={item}
+      className="post-summary"
+    >
       <h2 className="post-title" onClick={() => {gotToPost(post.slug)}}>{post.title}</h2>
       <div className="post-card">
         <p className="post-desc">{post.description}</p>   
@@ -55,16 +81,21 @@ const PostCard: React.FunctionComponent<PostProps> = ({ post, imgHeight, imgWidt
         <Link href={`/blog/${post.slug}`}><a className="post-link">View Post</a></Link>
         <div className="clear"></div>
       </div>
-    </article>
+    </motion.article>
   )
 }
 
 const PostList: React.FunctionComponent<PostsProps> = ({imgHeight, imgWidth, className}) => {
 
   return (
-    <div className={"post-list " + className}>
+    <motion.div
+      className={"post-list " + className}
+      variants={list}
+      initial="hidden"
+      animate="visible"
+    >
       {posts.map(post => <PostCard post={post} key={post.slug} imgHeight={ (imgHeight) ? imgHeight : "300px" } imgWidth={(imgWidth)? imgWidth : "400px"}></PostCard>)}
-    </div>
+    </motion.div>
   )
 }
 

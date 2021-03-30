@@ -1,5 +1,5 @@
-import * as firebase  from 'firebase/app';
-import { storage } from 'firebase/app'
+import firebase  from 'firebase/app';
+import 'firebase/storage'
 
 import 'firebase/auth'; 
 
@@ -8,7 +8,7 @@ interface Auth {
     login: () => Promise<firebase.User | null>;
     logout: () => Promise<any>;
     provider: firebase.auth.GoogleAuthProvider;
-    storage: () => storage.Storage;
+    storage: () => firebase.storage.Storage;
 }
 
 export interface AuthState {
@@ -61,7 +61,7 @@ export const auth: Auth = {
       });
     },
     storage: () => {
-        return storage();
+        return firebase.storage();
     }
 }
 

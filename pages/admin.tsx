@@ -2,7 +2,7 @@ import Layout from '../components/Layout'
 import { Heading } from 'grommet';
 import { useEffect, useContext, useState } from 'react';
 import { Context } from './_app';
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { useRouter } from 'next/router';
 import AdminComments from '../components/AdminComments';

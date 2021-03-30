@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect, ChangeEvent } from "react";
 import { Context, StateType } from '../pages/_app';
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { Heading, TextArea, Button, Markdown, Box } from 'grommet';
 import { Trash } from 'grommet-icons';

@@ -53,22 +53,3 @@ section {
     }
   }
 }
-
-.tagline {
-  opacity: 0;
-  animation-name: taglineEnter;
-  animation-duration: 0.4s;
-  animation-timing-function: ease;
-  animation-delay: 0.4s;
-  animation-fill-mode: forwards;
-  animation-iteration-count: 1;
-}
-
-@keyframes taglineEnter {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}

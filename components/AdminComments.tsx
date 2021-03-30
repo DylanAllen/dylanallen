@@ -1,16 +1,17 @@
 import { useContext, useState, useEffect } from "react";
 import { Context } from '../pages/_app';
-import { firestore } from 'firebase/app';
+import firebase from 'firebase/app';
 import { Trash, CheckboxSelected } from 'grommet-icons';
 import { Heading, Markdown } from 'grommet';
 import Link from 'next/link';
+import 'firebase/firestore'
 
 interface CommentType {
   userid: string;
   message: string;
   displayname: string;
   status: 'approved' | 'pending' | 'rejected';
-  timestamp: firestore.Timestamp;
+  timestamp: firebase.firestore.Timestamp;
   id: string;
   slug: string
 }
@@ -20,7 +21,7 @@ const AdminComments: React.FunctionComponent = () => {
   const state = useContext(Context)
   const [comments, updateComments] = useState<CommentType[]>([]);
   const [trigger, update] = useState(0);
-  const commentsRef = firestore().collection('comments');
+  const commentsRef = firebase.firestore().collection('comments');
 
   const Comment: React.FunctionComponent<{ comment: CommentType }> = ({ comment }) => (
     <div className="commentContainer">
@@ -65,7 +66,7 @@ const AdminComments: React.FunctionComponent = () => {
     if (unsunscribe) {
       unsunscribe();
     }
-    unsunscribe = firestore()
+    unsunscribe = firebase.firestore()
     getComments();
 
   },[trigger])

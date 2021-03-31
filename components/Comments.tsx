@@ -37,7 +37,7 @@ const deleteComment = async (id: string, ref: firebase.firestore.CollectionRefer
 
 const apiPost = async (payload: any, url: string) => {
 
-  return await fetch(url, {
+  return await fetch(`https://www.dylanallen.net${url}`, {
     method: 'POST',
     mode: 'cors',
     cache: 'no-cache',

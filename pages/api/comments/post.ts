@@ -13,6 +13,27 @@ const init = () => {
   });
 }
 
+const originWhitelist = process.env.whitelist_domains ? process.env.whitelist_domains.split(',') : ['https://dylanallen.net'];
+
+const allowCors = (fn: Function) => async (req: NextApiRequest, res: NextApiResponse) => {
+  const origin = req.headers.origin || '';
+  console.log('Origin', origin);
+  // @ts-ignore
+  res.setHeader('Access-Control-Allow-Credentials', true)
+  if (originWhitelist.includes(origin)) res.setHeader('Access-Control-Allow-Origin', origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
+  if (req.method === 'OPTIONS') {
+    res.status(200).end()
+    return
+  }
+  return await fn(req, res)
+}
+
+
 const validateUser = async (token: string, uid: string) => {
   const verify = await admin.auth().verifyIdToken(token)
   return new Promise((resolve) => {
@@ -25,7 +46,7 @@ const validateUser = async (token: string, uid: string) => {
   
 }
   
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { message, slug, userid, displayname, token, avatar } = req.body;
   const dt = new Date();
   const id = dt.valueOf().toString();
@@ -131,7 +152,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return Promise.resolve()
 
   }
-
-  
-
 }
+
+export default allowCors(handler);

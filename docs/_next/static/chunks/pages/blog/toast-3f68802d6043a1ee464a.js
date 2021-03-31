@@ -1,1 +1,0 @@
-_N_E=(window.webpackJsonp_N_E=window.webpackJsonp_N_E||[]).push([[22],{HdV3:function(_,n,o){(window.__NEXT_P=window.__NEXT_P||[]).push(["/blog/toast",function(){return o("/lH9")}])}},[["HdV3",1,2,4,6,0,3,5,7,8,9]]]);

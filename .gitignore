@@ -4,3 +4,4 @@ node_modules
 .vercel
 firebase.config.ts
 .env.local
+.DS_Store

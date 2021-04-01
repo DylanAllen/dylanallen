@@ -1,5 +1,5 @@
 import "../assets/style.scss";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
 import App, { AppProps } from "next/app";
 import { initApp } from "../utils/firebase";
 import { auth } from "../utils/auth";
@@ -77,10 +77,14 @@ export default class MyApp extends App {
     const { Component, pageProps, router } = this.props;
     return (
       <>
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence>
+          <AnimateSharedLayout>
+            <motion.main>
           <Context.Provider value={this.state}>
             <Component {...pageProps} key={router.route} />
-          </Context.Provider>
+              </Context.Provider>
+              </motion.main>
+            </AnimateSharedLayout>
         </AnimatePresence>
         <Toaster toastInput={this.state.toastValue} />
       </>

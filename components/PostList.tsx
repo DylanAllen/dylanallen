@@ -9,7 +9,9 @@ import { meta as Moov } from '../pages/blog/moov';
 import { meta as Toast } from '../pages/blog/toast';
 import { meta as BookReviews } from '../pages/blog/book-reviews';
 import {meta as Accelerate1} from '../pages/blog/accelerate-1';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { useEffect, useState } from 'react';
 
 const list = {
   visible: {
@@ -28,7 +30,7 @@ const list = {
 }
 
 const item = {
-  visible: { opacity: 1, y: 0 },
+  visible: { opacity: 1, y: 0, transition: { delay: 0.2 } },
   hidden: { opacity: 0, y: 20 },
 }
 
@@ -58,15 +60,30 @@ interface PostProps {
 
 const PostCard: React.FunctionComponent<PostProps> = ({ post, imgHeight, imgWidth }) => {
 
+  const { ref, inView } = useInView();
+  const controls = useAnimation()
+  const [visible, setVisible] = useState(false);
+
   const router = useRouter();
   const gotToPost = (url: string) => {
     router.push(`/blog/${url}`);
   }
 
+  useEffect(() => {
+    if (inView && !visible) {
+      console.log('vis')
+      controls.start("visible");
+      setVisible(true);
+    }
+  }, [inView])
+
   return (
     <motion.article
       variants={item}
+      animate={controls}
+      initial="hidden"
       className="post-summary"
+      ref={ref}
     >
       <h2 className="post-title" onClick={() => {gotToPost(post.slug)}}>{post.title}</h2>
       <div className="post-card">
@@ -75,7 +92,8 @@ const PostCard: React.FunctionComponent<PostProps> = ({ post, imgHeight, imgWidt
           className="post-image"
           src={post.image} style={{height: imgHeight, width: imgWidth}}
           overlayed={true}
-          onClick={() => {gotToPost(post.slug)}}
+          onClick={() => { gotToPost(post.slug) }}
+          layoutId={`post-${post.slug}`}
         />   
         <div className="post-floater"></div>
         <Link href={`/blog/${post.slug}`}><a className="post-link">View Post</a></Link>
@@ -88,6 +106,7 @@ const PostCard: React.FunctionComponent<PostProps> = ({ post, imgHeight, imgWidt
 const PostList: React.FunctionComponent<PostsProps> = ({imgHeight, imgWidth, className}) => {
 
   return (
+    
     <motion.div
       className={"post-list " + className}
       variants={list}
@@ -95,7 +114,7 @@ const PostList: React.FunctionComponent<PostsProps> = ({imgHeight, imgWidth, cla
       animate="visible"
     >
       {posts.map(post => <PostCard post={post} key={post.slug} imgHeight={ (imgHeight) ? imgHeight : "300px" } imgWidth={(imgWidth)? imgWidth : "400px"}></PostCard>)}
-    </motion.div>
+      </motion.div>
   )
 }
 

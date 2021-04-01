@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useState, useEffect, CSSProperties } from "react";
 import { getImage } from "../utils/firebase";
 
@@ -9,13 +10,14 @@ interface Props {
   overlayed?: boolean;
   onClick?: () => void;
   caption?: React.ReactNode;
+  layoutId?: string;
 }
 
 const greyPng = `, url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAQAAAAnOwc2AAAAEUlEQVR42mNMO8OAARiHsiAAVkoL/1ec1jIAAAAASUVORK5CYII=)`
 
 const Picture: React.FunctionComponent<Props> = (props) => {
 
-  const { style, src, fbpath, overlayed, onClick } = props;
+  const { style, src, fbpath, overlayed, onClick, layoutId } = props;
   const [url, setImg] = useState('');
   const [opacity, setOpacity] = useState(0);
   const [animate, setAnimate] = useState(true);
@@ -49,18 +51,19 @@ const Picture: React.FunctionComponent<Props> = (props) => {
       style={{ ...style }}
       onClick={onClick}
     >
-      <div
+      <motion.div
         className={"image-div" + (overlayed ? " overlay" : "")}
         style={{
           backgroundImage: `url(${url}) ${overlayed ? greyPng : ""}`,
           opacity: opacity,
         }}
+        layoutId={layoutId}
       >
         <figure>
-          <img src={url} style={{ display: "none" }} onLoad={loaded} />
+          <motion.img src={url} style={{ display: "none" }} onLoad={loaded}/>
           {props.caption ? <figcaption>{props.caption}</figcaption> : ""}
         </figure>
-      </div>
+      </motion.div>
     </div>
   );
 

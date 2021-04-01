@@ -1,7 +1,7 @@
-import Layout from '../../components/Layout'
-import { Markdown } from 'grommet';
-import Comments from '../../components/Comments';
-import Picture from '../../components/Picture';
+import Layout from "../../components/Layout";
+import { Markdown } from "grommet";
+import Comments from "../../components/Comments";
+import Picture from "../../components/Picture";
 
 const md = `
 I recently published my first honest to goodness open source project. I have been working on this on nights and weekends for the past several months. My wife and I welcomed a new baby during that time, so I took a break from it for a while, and then picked it back up recently. It is still very much a work in progress, but I got it to a point that I am proud enough to share it with the world. So without further ado, meet Udon: https://github.com/DylanAllen/udon
@@ -43,31 +43,40 @@ That is about it. I would gladly welcome any contributions to the project, and i
 `;
 
 const Comps = {
-  "p": {
-    "component": "paragraph",
-    "props": {"fill": 'true'}
-  }
-}
+  p: {
+    component: "paragraph",
+    props: { fill: "true" },
+  },
+};
 
-const UdonOne: React.FunctionComponent<{state: any}> = () => (
-  <Layout title={`${meta.title}  | Dylan Allen | JavaScript Developer | Frontend Web`} image={meta.image} description={meta.description}>
+const UdonOne: React.FunctionComponent<{ state: any }> = () => (
+  <Layout
+    title={`${meta.title}  | Dylan Allen | JavaScript Developer | Frontend Web`}
+    image={meta.image}
+    description={meta.description}
+  >
     <div className="container">
       <h1>{meta.title}</h1>
-      <Picture src={meta.image} style={{width: '100%', height: '45vw', maxHeight: '700px' }}></Picture>
+      <Picture
+        src={meta.image}
+        style={{ width: "100%", height: "45vw", maxHeight: "700px" }}
+        layoutId={`post-${meta.slug}`}
+      ></Picture>
       <div className="postContainer">
         <Markdown components={Comps}>{md}</Markdown>
       </div>
       <Comments slug={meta.slug}></Comments>
     </div>
   </Layout>
-)
+);
 
 export const meta = {
-  title: 'Udon Project Management',
-  description: 'Udon is a project management and time tracking system built on Vue.js and Firebase. This is an open source tool geared towards small agencies that need to keep track of multiple projects. It is a light weight web based tool to keep project info, documents, and comunication in one place.',
-  image: '/udonlogo.png',
-  slug: 'udon',
-  date: new Date(2020, 4, 20)
-}
+  title: "Udon Project Management",
+  description:
+    "Udon is a project management and time tracking system built on Vue.js and Firebase. This is an open source tool geared towards small agencies that need to keep track of multiple projects. It is a light weight web based tool to keep project info, documents, and comunication in one place.",
+  image: "/udonlogo.png",
+  slug: "udon",
+  date: new Date(2020, 4, 20),
+};
 
-export default UdonOne
+export default UdonOne;

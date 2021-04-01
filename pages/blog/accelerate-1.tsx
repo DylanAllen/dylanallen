@@ -2,7 +2,6 @@ import Layout from '../../components/Layout'
 import Picture from '../../components/Picture';
 import Comments from '../../components/Comments';
 import React from 'react';
-// import Link from 'next/link';
 
 const Accelerate: React.FunctionComponent<{ state: any }> =  () => {
 
@@ -17,6 +16,7 @@ const Accelerate: React.FunctionComponent<{ state: any }> =  () => {
         <Picture
           src={meta.image}
           style={{ width: "100%", height: "45vw", maxHeight: "700px" }}
+          layoutId={`post-${meta.slug}`}
         ></Picture>
         <p>
           <strong>

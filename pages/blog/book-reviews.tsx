@@ -2,7 +2,6 @@ import Layout from '../../components/Layout'
 import Picture from '../../components/Picture';
 import Comments from '../../components/Comments';
 import React from 'react';
-// import Link from 'next/link';
 
 const BookReviews: React.FunctionComponent<{ state: any }> =  () => {
 
@@ -16,6 +15,7 @@ const BookReviews: React.FunctionComponent<{ state: any }> =  () => {
           caption={<>
             photo by <a href="https://kaboompics.com/" target="_blank" rel="nofollow">Karolina Grabowska</a>
           </>}
+          layoutId={`post-${meta.slug}`}
         ></Picture>
         <p>
           I started at Moov Financial in October with not a whole lot of fintech experience, and no startup experience. I wanted to close my knowledge gap fast, so I have been on a reading rampage ever since.
